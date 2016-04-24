@@ -7,13 +7,12 @@ import java.util.ArrayList;
  */
 public class Task {
 
-    private int id;                         // Unique identifier
-    private String name;                    // Task Name
-    private String description;             // Task Description
-    private double range;                   // Range to notify user
-    private ArrayList<Location> locations;  // Locations added to this task
+    private int id;
+    private String name;
+    private String description;
+    private double range;
+    private ArrayList<Location> locations;
 
-    // Constructor
     public Task(int id, String name, String description, double range) {
         this.id = id;
         this.name = name;
@@ -22,7 +21,6 @@ public class Task {
         this.locations = new ArrayList<>();
     }
 
-    // Getter and Setter of simple attributes
     public int getId() {
         return id;
     }
@@ -48,7 +46,6 @@ public class Task {
         this.range = range;
     }
 
-    // Method to add a location to a task
     public void addLocationToTask(Location location) {
         locations.add(location);
     }
