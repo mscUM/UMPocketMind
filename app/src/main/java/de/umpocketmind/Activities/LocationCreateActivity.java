@@ -1,4 +1,4 @@
-package de.umpocketmind.Activity;
+package de.umpocketmind.Activities;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -10,14 +10,16 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class TaskMapDisplayActivity extends FragmentActivity implements OnMapReadyCallback {
+import de.umpocketmind.R;
+
+public class LocationCreateActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_map_display);
+        setContentView(R.layout.activity_location_create);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

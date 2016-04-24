@@ -1,4 +1,4 @@
-package de.umpocketmind.Activity;
+package de.umpocketmind.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
