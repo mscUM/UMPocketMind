@@ -1,22 +1,26 @@
-package de.umpocketmind;
+package de.umpocketmind.FunctionalityClasses;
+
+import java.util.ArrayList;
+
+import de.umpocketmind.FunctionalityClasses.Location;
 
 /**
  * Created by eva on 24.04.16.
  */
-public class Location {
+public class Task {
 
     private int id;
     private String name;
     private String description;
-    private double longtitude;
-    private double latitude;
+    private double range;
+    private ArrayList<Location> locations;
 
-    public Location(int id, String name, String description, double longtitude, double latitude) {
+    public Task(int id, String name, String description, double range) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.longtitude = longtitude;
-        this.latitude = latitude;
+        this.range = range;
+        this.locations = new ArrayList<>();
     }
 
     public int getId() {
@@ -37,16 +41,15 @@ public class Location {
     public void setDescription(String description) {
         this.description = description;
     }
-    public double getLongtitude() {
-        return longtitude;
+    public double getRange() {
+        return range;
     }
-    public void setLongtitude(double longtitude) {
-        this.longtitude = longtitude;
+    public void setRange(double range) {
+        this.range = range;
     }
-    public double getLatitude() {
-        return latitude;
+
+    public void addLocationToTask(Location location) {
+        locations.add(location);
     }
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
+
 }
