@@ -5,4 +5,33 @@ package de.umpocketmind.FunctionalityClasses;
  */
 public class LocationManager {
 
+    private static LocationManager locationManager;
+
+    public static LocationManager getLocationManager() {
+        if (locationManager == null) {
+            locationManager = new LocationManager();
+        }
+        return locationManager;
+    }
+
+    public void createLocation() {
+        // Todo
+    }
+
+    public void updateLocationById(int id) {
+        // Todo
+    }
+
+    public void deleteLocationById(int id) {
+        // Todo
+    }
+
+    public void getLocationById(int id) {
+        // Todo
+    }
+
+    public void getAllLocations() {
+        // Todo
+    }
+
 }
