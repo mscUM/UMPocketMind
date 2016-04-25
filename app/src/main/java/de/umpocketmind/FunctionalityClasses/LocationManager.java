@@ -12,39 +12,39 @@ import java.util.ArrayList;
 public class LocationManager {
 
     private SQLiteDatabase database;
-    private DatabaseConnector databaseConnector;
+    private DatabaseConnectorLocations databaseConnectorLocations;
     private String[] columns = {
-            DatabaseConnector.COLUMN_LOCATIONS_ID,
-            DatabaseConnector.COLUMN_LOCATIONS_NAME,
-            DatabaseConnector.COLUMN_LOCATIONS_DESCRIPTION,
-            DatabaseConnector.COLUMN_LOCATIONS_LONGTITUDE,
-            DatabaseConnector.COLUMN_LOCATIONS_LATITUDE
+            DatabaseConnectorLocations.COLUMN_LOCATIONS_ID,
+            DatabaseConnectorLocations.COLUMN_LOCATIONS_NAME,
+            DatabaseConnectorLocations.COLUMN_LOCATIONS_DESCRIPTION,
+            DatabaseConnectorLocations.COLUMN_LOCATIONS_LONGTITUDE,
+            DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE
     };
 
 
     public LocationManager(Context context) {
-        databaseConnector = new DatabaseConnector(context);
+        databaseConnectorLocations = new DatabaseConnectorLocations(context);
     }
 
     public void open() {
-        database = databaseConnector.getWritableDatabase();
+        database = databaseConnectorLocations.getWritableDatabase();
     }
 
     public void close() {
-        databaseConnector.close();
+        databaseConnectorLocations.close();
     }
 
     public Location createLocation(Location newLocation) {
         ContentValues values = new ContentValues();
-        values.put(DatabaseConnector.COLUMN_LOCATIONS_NAME, newLocation.getName());
-        values.put(DatabaseConnector.COLUMN_LOCATIONS_DESCRIPTION, newLocation.getDescription());
-        values.put(DatabaseConnector.COLUMN_LOCATIONS_LONGTITUDE, newLocation.getLongtitude());
-        values.put(DatabaseConnector.COLUMN_LOCATIONS_LATITUDE, newLocation.getLatitude());
+        values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_NAME, newLocation.getName());
+        values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_DESCRIPTION, newLocation.getDescription());
+        values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_LONGTITUDE, newLocation.getLongtitude());
+        values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE, newLocation.getLatitude());
 
-        long insertId = database.insert(DatabaseConnector.TABLE_LOCATIONS, null, values);
+        long insertId = database.insert(DatabaseConnectorLocations.TABLE_LOCATIONS, null, values);
 
-        Cursor cursor = database.query(DatabaseConnector.TABLE_LOCATIONS,
-                columns, DatabaseConnector.COLUMN_LOCATIONS_ID + "=" + insertId,
+        Cursor cursor = database.query(DatabaseConnectorLocations.TABLE_LOCATIONS,
+                columns, DatabaseConnectorLocations.COLUMN_LOCATIONS_ID + "=" + insertId,
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -57,7 +57,7 @@ public class LocationManager {
     public ArrayList<Location> getAllLocations() {
         ArrayList<Location> locationList = new ArrayList<>();
 
-        Cursor cursor = database.query(DatabaseConnector.TABLE_LOCATIONS,
+        Cursor cursor = database.query(DatabaseConnectorLocations.TABLE_LOCATIONS,
                 columns, null, null, null, null, null);
 
         cursor.moveToFirst();
@@ -76,26 +76,26 @@ public class LocationManager {
 
     public void updateLocation(Location newLocation) {
         ContentValues values = new ContentValues();
-        values.put(DatabaseConnector.COLUMN_LOCATIONS_NAME, newLocation.getName());
-        values.put(DatabaseConnector.COLUMN_LOCATIONS_DESCRIPTION, newLocation.getDescription());
-        values.put(DatabaseConnector.COLUMN_LOCATIONS_LONGTITUDE, newLocation.getLongtitude());
-        values.put(DatabaseConnector.COLUMN_LOCATIONS_LATITUDE, newLocation.getLatitude());
+        values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_NAME, newLocation.getName());
+        values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_DESCRIPTION, newLocation.getDescription());
+        values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_LONGTITUDE, newLocation.getLongtitude());
+        values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE, newLocation.getLatitude());
 
-        database.update(DatabaseConnector.TABLE_LOCATIONS,
+        database.update(DatabaseConnectorLocations.TABLE_LOCATIONS,
                 values,
-                DatabaseConnector.COLUMN_LOCATIONS_ID + "=" + newLocation.getId(),
+                DatabaseConnectorLocations.COLUMN_LOCATIONS_ID + "=" + newLocation.getId(),
                 null);
     }
 
     public void deleteLocationById(long id) {
-        database.delete(DatabaseConnector.TABLE_LOCATIONS,
-                DatabaseConnector.COLUMN_LOCATIONS_ID + "=" + id,
+        database.delete(DatabaseConnectorLocations.TABLE_LOCATIONS,
+                DatabaseConnectorLocations.COLUMN_LOCATIONS_ID + "=" + id,
                 null);
     }
 
     public Location getLocationById(long id) {
-        Cursor cursor = database.query(DatabaseConnector.TABLE_LOCATIONS,
-                columns, DatabaseConnector.COLUMN_LOCATIONS_ID + "=" + id,
+        Cursor cursor = database.query(DatabaseConnectorLocations.TABLE_LOCATIONS,
+                columns, DatabaseConnectorLocations.COLUMN_LOCATIONS_ID + "=" + id,
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -106,11 +106,11 @@ public class LocationManager {
     }
 
     private Location cursorToLocation(Cursor cursor) {
-        int idIndex = cursor.getColumnIndex(DatabaseConnector.COLUMN_LOCATIONS_ID);
-        int idName = cursor.getColumnIndex(DatabaseConnector.COLUMN_LOCATIONS_NAME);
-        int idDescription = cursor.getColumnIndex(DatabaseConnector.COLUMN_LOCATIONS_DESCRIPTION);
-        int idLongtitude = cursor.getColumnIndex(DatabaseConnector.COLUMN_LOCATIONS_LONGTITUDE);
-        int idLatitude = cursor.getColumnIndex(DatabaseConnector.COLUMN_LOCATIONS_LATITUDE);
+        int idIndex = cursor.getColumnIndex(DatabaseConnectorLocations.COLUMN_LOCATIONS_ID);
+        int idName = cursor.getColumnIndex(DatabaseConnectorLocations.COLUMN_LOCATIONS_NAME);
+        int idDescription = cursor.getColumnIndex(DatabaseConnectorLocations.COLUMN_LOCATIONS_DESCRIPTION);
+        int idLongtitude = cursor.getColumnIndex(DatabaseConnectorLocations.COLUMN_LOCATIONS_LONGTITUDE);
+        int idLatitude = cursor.getColumnIndex(DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE);
 
         long id = cursor.getLong(idIndex);
         String name = cursor.getString(idName);

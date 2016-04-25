@@ -9,13 +9,13 @@ import de.umpocketmind.FunctionalityClasses.Location;
  */
 public class Task {
 
-    private int id;
+    private long id;
     private String name;
     private String description;
     private double range;
     private ArrayList<Location> locations;
 
-    public Task(int id, String name, String description, double range) {
+    public Task(long id, String name, String description, double range) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -23,10 +23,10 @@ public class Task {
         this.locations = new ArrayList<>();
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getName() {

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by eva on 24.04.16.
  */
-public class DatabaseConnector extends SQLiteOpenHelper {
+public class DatabaseConnectorLocations extends SQLiteOpenHelper {
 
     public static final String DB_NAME_LOCATIONS = "locations.db";
     public static final int DB_VERSION_LOCATIONS = 1;
@@ -26,7 +26,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                     COLUMN_LOCATIONS_LONGTITUDE + " REAL NOT NULL, " +
                     COLUMN_LOCATIONS_LATITUDE + " REAL NOT NULL);";
 
-    public DatabaseConnector(Context context) {
+    public DatabaseConnectorLocations(Context context) {
         super(context, DB_NAME_LOCATIONS, null, DB_VERSION_LOCATIONS);
     }
 
@@ -44,19 +44,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         // Todo
     }
 
-    /* ---------------------------------------*/
-    /* ---------------------------------------*/
-    /* ---------------------------------------*/
-
-    public void insertTaskInfo() {
-        // Todo
-    }
-
     public void insertLocationInfo() {
-        // Todo
-    }
-
-    public void selectTaskInfo() {
         // Todo
     }
 
@@ -64,15 +52,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         // Todo
     }
 
-    public void updateTaskInfo() {
-        // Todo
-    }
-
     public void updateLocationInfo() {
-        // Todo
-    }
-
-    public void deleteTaskInfo() {
         // Todo
     }
 
