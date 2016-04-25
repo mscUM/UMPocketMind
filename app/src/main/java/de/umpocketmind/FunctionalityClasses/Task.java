@@ -48,8 +48,10 @@ public class Task {
         this.range = range;
     }
 
+    public ArrayList<Location> getLocations() {
+        return locations;
+    }
     public void addLocationToTask(Location location) {
         locations.add(location);
     }
-
 }

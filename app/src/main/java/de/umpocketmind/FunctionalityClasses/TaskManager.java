@@ -11,52 +11,53 @@ import java.util.ArrayList;
  */
 public class TaskManager {
 
-    private SQLiteDatabase database;
+    private SQLiteDatabase taskDatabase;
     private DatabaseConnectorTasks databaseConnectorTasks;
-    private String[] columns = {
+    private String[] taskColumns = {
             DatabaseConnectorTasks.COLUMN_TASKS_ID,
             DatabaseConnectorTasks.COLUMN_TASKS_NAME,
             DatabaseConnectorTasks.COLUMN_TASKS_DESCRIPTION,
             DatabaseConnectorTasks.COLUMN_TASKS_RANGE,
     };
+    private TaskLocationsManager taskLocationsManager;
 
 
     public TaskManager(Context context) {
         databaseConnectorTasks = new DatabaseConnectorTasks(context);
+        taskLocationsManager = new TaskLocationsManager(context);
     }
 
     public void open() {
-        database = databaseConnectorTasks.getWritableDatabase();
+        taskDatabase = databaseConnectorTasks.getWritableDatabase();
+        taskLocationsManager.open();
     }
 
     public void close() {
         databaseConnectorTasks.close();
+        taskLocationsManager.close();
     }
 
     public Task createTask(Task newTask) {
-        ContentValues values = new ContentValues();
-        values.put(DatabaseConnectorTasks.COLUMN_TASKS_NAME, newTask.getName());
-        values.put(DatabaseConnectorTasks.COLUMN_TASKS_DESCRIPTION, newTask.getDescription());
-        values.put(DatabaseConnectorTasks.COLUMN_TASKS_RANGE, newTask.getRange());
+        ContentValues taskValues = new ContentValues();
+        taskValues.put(DatabaseConnectorTasks.COLUMN_TASKS_NAME, newTask.getName());
+        taskValues.put(DatabaseConnectorTasks.COLUMN_TASKS_DESCRIPTION, newTask.getDescription());
+        taskValues.put(DatabaseConnectorTasks.COLUMN_TASKS_RANGE, newTask.getRange());
 
-        long insertId = database.insert(DatabaseConnectorTasks.TABLE_TASKS, null, values);
+        long insertTaskId = taskDatabase.insert(DatabaseConnectorTasks.TABLE_TASKS, null, taskValues);
 
-        Cursor cursor = database.query(DatabaseConnectorTasks.TABLE_TASKS,
-                columns, DatabaseConnectorTasks.COLUMN_TASKS_ID + "=" + insertId,
-                null, null, null, null);
+        for (Location location: newTask.getLocations()) {
+            taskLocationsManager.createTaskLocation(newTask, location);
+        }
 
-        cursor.moveToFirst();
-        Task task = cursorToTask(cursor);
-        cursor.close();
-
+        Task task = getTaskById(insertTaskId);
         return task;
     }
 
     public ArrayList<Task> getAllTasks() {
         ArrayList<Task> taskList = new ArrayList<>();
 
-        Cursor cursor = database.query(DatabaseConnectorTasks.TABLE_TASKS,
-                columns, null, null, null, null, null);
+        Cursor cursor = taskDatabase.query(DatabaseConnectorTasks.TABLE_TASKS,
+                taskColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         Task task;
@@ -73,26 +74,33 @@ public class TaskManager {
     }
 
     public void updateTask(Task newTask) {
-        ContentValues values = new ContentValues();
-        values.put(DatabaseConnectorTasks.COLUMN_TASKS_NAME, newTask.getName());
-        values.put(DatabaseConnectorTasks.COLUMN_TASKS_DESCRIPTION, newTask.getDescription());
-        values.put(DatabaseConnectorTasks.COLUMN_TASKS_RANGE, newTask.getRange());
+        ContentValues taskValues = new ContentValues();
+        taskValues.put(DatabaseConnectorTasks.COLUMN_TASKS_NAME, newTask.getName());
+        taskValues.put(DatabaseConnectorTasks.COLUMN_TASKS_DESCRIPTION, newTask.getDescription());
+        taskValues.put(DatabaseConnectorTasks.COLUMN_TASKS_RANGE, newTask.getRange());
 
-        database.update(DatabaseConnectorTasks.TABLE_TASKS,
-                values,
+        taskDatabase.update(DatabaseConnectorTasks.TABLE_TASKS,
+                taskValues,
                 DatabaseConnectorTasks.COLUMN_TASKS_ID + "=" + newTask.getId(),
                 null);
+
+        taskLocationsManager.deleteAllTaskLocationsForTask(newTask);
+        for (Location location: newTask.getLocations()) {
+            taskLocationsManager.createTaskLocation(newTask, location);
+        }
     }
 
     public void deleteTaskById(long id) {
-        database.delete(DatabaseConnectorTasks.TABLE_TASKS,
+        Task task = getTaskById(id);
+        taskLocationsManager.deleteAllTaskLocationsForTask(task);
+        taskDatabase.delete(DatabaseConnectorTasks.TABLE_TASKS,
                 DatabaseConnectorTasks.COLUMN_TASKS_ID + "=" + id,
                 null);
     }
 
     public Task getTaskById(long id) {
-        Cursor cursor = database.query(DatabaseConnectorTasks.TABLE_TASKS,
-                columns, DatabaseConnectorTasks.COLUMN_TASKS_ID + "=" + id,
+        Cursor cursor = taskDatabase.query(DatabaseConnectorTasks.TABLE_TASKS,
+                taskColumns, DatabaseConnectorTasks.COLUMN_TASKS_ID + "=" + id,
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -114,6 +122,11 @@ public class TaskManager {
         int range = cursor.getInt(rangeIndex);
 
         Task task = new Task(id, name, description, range);
+
+        ArrayList<Location> locations = taskLocationsManager.getAllTaskLocationsForTask(task);
+        for (Location location: locations) {
+            task.addLocationToTask(location);
+        }
 
         return task;
     }

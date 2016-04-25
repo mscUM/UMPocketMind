@@ -43,14 +43,7 @@ public class LocationManager {
 
         long insertId = database.insert(DatabaseConnectorLocations.TABLE_LOCATIONS, null, values);
 
-        Cursor cursor = database.query(DatabaseConnectorLocations.TABLE_LOCATIONS,
-                columns, DatabaseConnectorLocations.COLUMN_LOCATIONS_ID + "=" + insertId,
-                null, null, null, null);
-
-        cursor.moveToFirst();
-        Location location = cursorToLocation(cursor);
-        cursor.close();
-
+        Location location = getLocationById(insertId);
         return location;
     }
 
