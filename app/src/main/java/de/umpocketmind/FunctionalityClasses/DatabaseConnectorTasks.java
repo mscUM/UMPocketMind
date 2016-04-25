@@ -41,20 +41,4 @@ public class DatabaseConnectorTasks extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Todo
     }
-
-    public void insertTaskInfo() {
-        // Todo
-    }
-
-    public void selectTaskInfo() {
-        // Todo
-    }
-
-    public void updateTaskInfo() {
-        // Todo
-    }
-
-    public void deleteTaskInfo() {
-        // Todo
-    }
 }

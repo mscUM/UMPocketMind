@@ -9,4 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="de.umpocketmind.Activities.LocationListDisplayActivity">
 
+    <TextView
+        android:id="@+id/locationList"
+        android:text="Location List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="20dp"/>
+
+
 </RelativeLayout>
