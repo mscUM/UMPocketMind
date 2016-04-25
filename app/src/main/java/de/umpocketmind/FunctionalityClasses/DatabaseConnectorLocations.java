@@ -43,20 +43,4 @@ public class DatabaseConnectorLocations extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Todo
     }
-
-    public void insertLocationInfo() {
-        // Todo
-    }
-
-    public void selectLocationInfo() {
-        // Todo
-    }
-
-    public void updateLocationInfo() {
-        // Todo
-    }
-
-    public void deleteLocationInfo() {
-        // Todo
-    }
 }
