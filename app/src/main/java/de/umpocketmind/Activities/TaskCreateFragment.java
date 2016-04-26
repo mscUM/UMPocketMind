@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import de.umpocketmind.R;
+
 
 public class TaskCreateFragment extends Fragment {
 
@@ -15,7 +17,7 @@ public class TaskCreateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_addtask, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_task_create, container, false);
 
         return rootView;
     }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import de.umpocketmind.R;
+
 
 public class TaskDisplayActivity extends ActionBarActivity {
 

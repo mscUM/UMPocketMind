@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import de.umpocketmind.R;
+
 
 public class TaskCreateActivity extends ActionBarActivity {
 

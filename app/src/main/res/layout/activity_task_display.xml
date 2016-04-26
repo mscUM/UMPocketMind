@@ -2,7 +2,7 @@
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_taskdetail"
+    android:id="@+id/fragment_task_display"
     android:name="de.umpocketmind.Activities.TaskDisplayFragment"
     tools:layout="@layout/fragment_task_display"
     android:layout_width="match_parent"

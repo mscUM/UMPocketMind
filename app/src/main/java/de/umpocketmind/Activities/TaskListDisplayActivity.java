@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import de.umpocketmind.R;
+
 public class TaskListDisplayActivity extends ActionBarActivity {
 
 
@@ -16,7 +18,7 @@ public class TaskListDisplayActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tasklistdisplay);
+        setContentView(R.layout.activity_task_list_display);
 
 
 
