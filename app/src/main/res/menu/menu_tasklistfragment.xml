@@ -5,8 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_add_task"
-        android:title="@string/action_add_task"
+        android:id="@+id/action_task_create"
+        android:title="@string/action_task_create"
         app:showAsAction="never" />
 
 </menu>

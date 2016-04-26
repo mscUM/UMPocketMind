@@ -50,7 +50,7 @@ public class TaskListDisplayFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Check whether option was selected
         int id = item.getItemId();
-        if (id == R.id.action_add_task) {
+        if (id == R.id.action_task_create) {
 
 
 
