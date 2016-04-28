@@ -54,7 +54,16 @@ public class TaskListDisplayFragment extends Fragment {
         if (id == R.id.action_task_create) {
 
 
-            Toast.makeText(getActivity(), "Aktualisieren gedrückt!", Toast.LENGTH_LONG).show();
+            // Intent erzeugen und Starten der AktiendetailActivity mit explizitem Intent
+            Intent taskcreateIntent = new Intent(getActivity(), TaskCreateActivity.class);
+            boolean taskInfo = false;
+            taskcreateIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
+            startActivity(taskcreateIntent);
+
+
+
+
+           
 
 
                 return true;

@@ -1,3 +1,4 @@
+//author: Janos
 package de.umpocketmind.Activities;
 
 import android.os.Bundle;
