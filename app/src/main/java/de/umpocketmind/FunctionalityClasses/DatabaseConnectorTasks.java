@@ -9,22 +9,22 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseConnectorTasks extends SQLiteOpenHelper {
 
-    public static final String DB_NAME_TASKS = "tasks.db";
-    public static final int DB_VERSION_TASKS = 1;
-    public static final String TABLE_TASKS = "tasks";
-    public static final String COLUMN_TASKS_ID = "_id";
-    public static final String COLUMN_TASKS_NAME = "name";
-    public static final String COLUMN_TASKS_DESCRIPTION = "description";
-    public static final String COLUMN_TASKS_RANGE = "range";
+    protected static final String DB_NAME_TASKS = "tasks.db";
+    protected static final int DB_VERSION_TASKS = 1;
+    protected static final String TABLE_TASKS = "tasks";
+    protected static final String COLUMN_TASKS_ID = "_id";
+    protected static final String COLUMN_TASKS_NAME = "name";
+    protected static final String COLUMN_TASKS_DESCRIPTION = "description";
+    protected static final String COLUMN_TASKS_RANGE = "range";
 
-    public static final String SQL_CREATE_LOCATIONS =
+    protected static final String SQL_CREATE_LOCATIONS =
             "CREATE TABLE " + TABLE_TASKS + "(" +
                     COLUMN_TASKS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_TASKS_NAME + " TEXT NOT NULL, " +
                     COLUMN_TASKS_DESCRIPTION + " TEXT NOT NULL, " +
                     COLUMN_TASKS_RANGE + " REAL NOT NULL);";
 
-    public DatabaseConnectorTasks(Context context) {
+    protected DatabaseConnectorTasks(Context context) {
         super(context, DB_NAME_TASKS, null, DB_VERSION_TASKS);
     }
 

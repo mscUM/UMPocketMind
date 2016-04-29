@@ -9,20 +9,20 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseConnectorTaskLocations extends SQLiteOpenHelper {
 
-    public static final String DB_NAME_TASKLOCATIONS = "tasklocations.db";
-    public static final int DB_VERSION_TASKLOCATIONS = 1;
-    public static final String TABLE_TASKLOCATIONS = "tasklocations";
-    public static final String COLUMN_TASKLOCATIONS_ID = "_id";
-    public static final String COLUMN_TASKLOCATIONS_TASKID = "taskid";
-    public static final String COLUMN_TASKLOCATIONS_LOCATIONID = "locationid";
+    protected static final String DB_NAME_TASKLOCATIONS = "tasklocations.db";
+    protected static final int DB_VERSION_TASKLOCATIONS = 1;
+    protected static final String TABLE_TASKLOCATIONS = "tasklocations";
+    protected static final String COLUMN_TASKLOCATIONS_ID = "_id";
+    protected static final String COLUMN_TASKLOCATIONS_TASKID = "taskid";
+    protected static final String COLUMN_TASKLOCATIONS_LOCATIONID = "locationid";
 
-    public static final String SQL_CREATE_TASKLOCATIONS =
+    protected static final String SQL_CREATE_TASKLOCATIONS =
             "CREATE TABLE " + TABLE_TASKLOCATIONS + "(" +
                     COLUMN_TASKLOCATIONS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_TASKLOCATIONS_TASKID + " INTEGER NOT NULL, " +
                     COLUMN_TASKLOCATIONS_LOCATIONID + " INTEGER NOT NULL);";
 
-    public DatabaseConnectorTaskLocations(Context context) {
+    protected DatabaseConnectorTaskLocations(Context context) {
         super(context, DB_NAME_TASKLOCATIONS, null, DB_VERSION_TASKLOCATIONS);
     }
 
@@ -37,22 +37,6 @@ public class DatabaseConnectorTaskLocations extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Todo
-    }
-
-    public void insertTaskLocationsInfo() {
-        // Todo
-    }
-
-    public void selectTaskLocationsInfo() {
-        // Todo
-    }
-
-    public void updateTaskLocationsInfo() {
-        // Todo
-    }
-
-    public void deleteTaskLocationsInfo() {
         // Todo
     }
 }
