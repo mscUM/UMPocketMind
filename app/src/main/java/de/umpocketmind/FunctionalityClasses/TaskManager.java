@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.database.Cursor;
 import java.util.ArrayList;
+import android.util.Log;
 
 /**
  * Created by eva on 24.04.16.
@@ -25,16 +26,19 @@ public class TaskManager {
     public TaskManager(Context context) {
         databaseConnectorTasks = new DatabaseConnectorTasks(context);
         taskLocationsManager = new TaskLocationsManager(context);
+        Log.i("TaskMgr", "TaskManager created.");
     }
 
     public void open() {
         taskDatabase = databaseConnectorTasks.getWritableDatabase();
         taskLocationsManager.open();
+        Log.i("TaskMgr", "Database opened.");
     }
 
     public void close() {
         databaseConnectorTasks.close();
         taskLocationsManager.close();
+        Log.i("TaskMgr", "Database closed.");
     }
 
     public Task createTask(Task newTask) {
@@ -44,6 +48,7 @@ public class TaskManager {
         taskValues.put(DatabaseConnectorTasks.COLUMN_TASKS_RANGE, newTask.getRange());
 
         long insertTaskId = taskDatabase.insert(DatabaseConnectorTasks.TABLE_TASKS, null, taskValues);
+        Log.i("TaskMgr", "Task inserted into Database.");
 
         for (Location location: newTask.getLocations()) {
             taskLocationsManager.createTaskLocation(newTask, location);
@@ -69,6 +74,7 @@ public class TaskManager {
         }
 
         cursor.close();
+        Log.i("TaskMgr", "All Tasks fetched from Database.");
 
         return taskList;
     }
@@ -83,6 +89,7 @@ public class TaskManager {
                 taskValues,
                 DatabaseConnectorTasks.COLUMN_TASKS_ID + "=" + newTask.getId(),
                 null);
+        Log.i("TaskMgr", "Task updated in Database. Id: " + newTask.getId());
 
         taskLocationsManager.deleteAllTaskLocationsForTask(newTask);
         for (Location location: newTask.getLocations()) {
@@ -96,6 +103,7 @@ public class TaskManager {
         taskDatabase.delete(DatabaseConnectorTasks.TABLE_TASKS,
                 DatabaseConnectorTasks.COLUMN_TASKS_ID + "=" + id,
                 null);
+        Log.i("TaskMgr", "Task deleted from Database. Id: " +id);
     }
 
     public Task getTaskById(long id) {
@@ -106,6 +114,7 @@ public class TaskManager {
         cursor.moveToFirst();
         Task task = cursorToTask(cursor);
         cursor.close();
+        Log.i("TaskMgr", "Task fetched from Database. Id: " +id);
 
         return task;
     }

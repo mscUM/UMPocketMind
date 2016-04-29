@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.database.Cursor;
 import java.util.ArrayList;
+import android.util.Log;
 
 /**
  * Created by eva on 24.04.16.
@@ -24,14 +25,17 @@ public class LocationManager {
 
     public LocationManager(Context context) {
         databaseConnectorLocations = new DatabaseConnectorLocations(context);
+        Log.i("LocationMgr", "LocationManager created.");
     }
 
     public void open() {
         database = databaseConnectorLocations.getWritableDatabase();
+        Log.i("LocationMgr", "Database opened.");
     }
 
     public void close() {
         databaseConnectorLocations.close();
+        Log.i("LocationMgr", "Database closed.");
     }
 
     public Location createLocation(Location newLocation) {
@@ -42,6 +46,7 @@ public class LocationManager {
         values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE, newLocation.getLatitude());
 
         long insertId = database.insert(DatabaseConnectorLocations.TABLE_LOCATIONS, null, values);
+        Log.i("LocationMgr", "Location inserted into Database.");
 
         Location location = getLocationById(insertId);
         return location;
@@ -63,6 +68,7 @@ public class LocationManager {
         }
 
         cursor.close();
+        Log.i("LocationMgr", "All Locations fetched from Database.");
 
         return locationList;
     }
@@ -78,12 +84,14 @@ public class LocationManager {
                 values,
                 DatabaseConnectorLocations.COLUMN_LOCATIONS_ID + "=" + newLocation.getId(),
                 null);
+        Log.i("LocationMgr", "Location updated in Database. Id: " +newLocation.getId());
     }
 
     public void deleteLocationById(long id) {
         database.delete(DatabaseConnectorLocations.TABLE_LOCATIONS,
                 DatabaseConnectorLocations.COLUMN_LOCATIONS_ID + "=" + id,
                 null);
+        Log.i("LocationMgr", "Location deleted from Database. Id: " + id);
     }
 
     public Location getLocationById(long id) {
@@ -94,6 +102,7 @@ public class LocationManager {
         cursor.moveToFirst();
         Location location = cursorToLocation(cursor);
         cursor.close();
+        Log.i("LocationMgr", "Location fetched from Database. Id: " + id);
 
         return location;
     }

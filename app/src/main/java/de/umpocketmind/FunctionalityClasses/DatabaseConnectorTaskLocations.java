@@ -3,6 +3,7 @@ package de.umpocketmind.FunctionalityClasses;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by eva on 25.04.16.
@@ -28,15 +29,23 @@ public class DatabaseConnectorTaskLocations extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        boolean exceptionThrown = false;
+
         try {
             db.execSQL(SQL_CREATE_TASKLOCATIONS);
         } catch (Exception ex) {
-            // Todo
+            exceptionThrown = true;
+        }
+
+        if (exceptionThrown) {
+            Log.d("DBConTaskLocations", "Creation of Database not possible.");
+        } else {
+            Log.i("DBConTaskLocations", "Creation of Database succeeded.");
         }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Todo
+        Log.i("DBConTaskLocations", "Update of Database.");
     }
 }
