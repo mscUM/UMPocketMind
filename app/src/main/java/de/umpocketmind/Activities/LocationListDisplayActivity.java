@@ -50,7 +50,9 @@ public class LocationListDisplayActivity extends AppCompatActivity {
 
     private void  showAllLocations()
     {
+        locationManager.insertMockDataIntoDatabase();
         List<Location> locationList = locationManager.getAllLocations();
+        locationManager.deleteMockDataFromDatabase();
         ArrayAdapter<Location> locationArrayAdapter =
                 new ArrayAdapter<>
                         (
@@ -60,6 +62,7 @@ public class LocationListDisplayActivity extends AppCompatActivity {
                         );
         ListView locationListView = (ListView) findViewById(R.id.locationList);
         locationListView.setAdapter(locationArrayAdapter);
+
     }
 
 }//main
