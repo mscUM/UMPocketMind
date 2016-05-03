@@ -52,15 +52,14 @@ public class LocationListDisplayActivity extends AppCompatActivity {
 
     private void  showAllLocations()
     {
-        //Log.i("lldActivity", "Method showAllLocation called");
-        locationManager.insertMockDataIntoDatabase();
+        //locationManager.insertMockDataIntoDatabase();
         List<Location> locationList = locationManager.getAllLocations();
         List<String> locationNames = new ArrayList<>();
         for (Location location:locationList
              ) {
             locationNames.add(location.getName());
         }
-        locationManager.deleteMockDataFromDatabase();
+        //locationManager.deleteAllLocationsFromDatabase();
         ArrayAdapter<String> locationArrayAdapter =
                 new ArrayAdapter<>
                         (
