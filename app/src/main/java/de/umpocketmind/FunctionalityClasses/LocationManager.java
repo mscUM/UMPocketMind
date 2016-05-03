@@ -23,15 +23,17 @@ public class LocationManager {
     };
 
     public void insertMockDataIntoDatabase() {
-        Location locationParadeplatz = new Location(998, "Paradeplatz", "This is Paradeplatz", 8.4660542, 49.4874131);
+        Location locationParadeplatz = new Location(0, "Paradeplatz", "This is Paradeplatz", 8.4660542, 49.4874131);
         createLocation(locationParadeplatz);
-        Location locationSidney = new Location(997, "Sidney", "This is Sidney", 151.2069902, -33.8674869);
+        Location locationSidney = new Location(0, "Sidney", "This is Sidney", 151.2069902, -33.8674869);
         createLocation(locationSidney);
     }
 
-    public void deleteMockDataFromDatabase() {
-        deleteLocationById(998);
-        deleteLocationById(997);
+    public void deleteAllLocationsFromDatabase() {
+        ArrayList<Location> locations = getAllLocations();
+        for (Location location: locations) {
+            deleteLocationById(location.getId());
+        }
     }
 
 
