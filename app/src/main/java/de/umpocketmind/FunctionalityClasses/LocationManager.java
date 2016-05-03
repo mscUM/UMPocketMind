@@ -65,6 +65,7 @@ public class LocationManager {
     }
 
     public ArrayList<Location> getAllLocations() {
+        Log.i("LocationMgr", "Method getAllLocation called");
         ArrayList<Location> locationList = new ArrayList<>();
 
         Cursor cursor = database.query(DatabaseConnectorLocations.TABLE_LOCATIONS,

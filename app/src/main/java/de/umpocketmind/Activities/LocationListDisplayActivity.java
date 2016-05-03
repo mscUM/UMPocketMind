@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.database.Cursor;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.util.Log;
 
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class LocationListDisplayActivity extends AppCompatActivity {
         super.onResume();
         locationManager.open();
         showAllLocations();
+        locationManager.close();
     }
 
     @Override
@@ -50,15 +52,21 @@ public class LocationListDisplayActivity extends AppCompatActivity {
 
     private void  showAllLocations()
     {
+        //Log.i("lldActivity", "Method showAllLocation called");
         locationManager.insertMockDataIntoDatabase();
         List<Location> locationList = locationManager.getAllLocations();
+        List<String> locationNames = new ArrayList<>();
+        for (Location location:locationList
+             ) {
+            locationNames.add(location.getName());
+        }
         locationManager.deleteMockDataFromDatabase();
-        ArrayAdapter<Location> locationArrayAdapter =
+        ArrayAdapter<String> locationArrayAdapter =
                 new ArrayAdapter<>
                         (
                                 this,
                                 android.R.layout.select_dialog_item,
-                                locationList
+                                locationNames
                         );
         ListView locationListView = (ListView) findViewById(R.id.locationList);
         locationListView.setAdapter(locationArrayAdapter);
