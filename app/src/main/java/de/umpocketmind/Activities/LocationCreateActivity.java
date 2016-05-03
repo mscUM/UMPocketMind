@@ -2,6 +2,8 @@ package de.umpocketmind.Activities;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.content.Context;
+import android.content.ContentValues;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,6 +12,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import de.umpocketmind.FunctionalityClasses.Location;
+import de.umpocketmind.FunctionalityClasses.LocationManager;
 import de.umpocketmind.R;
 
 public class LocationCreateActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -45,4 +49,9 @@ public class LocationCreateActivity extends FragmentActivity implements OnMapRea
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+    LocationManager mManager = new LocationManager(this);
+
+
+
 }

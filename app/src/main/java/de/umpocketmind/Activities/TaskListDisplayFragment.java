@@ -45,6 +45,7 @@ public class TaskListDisplayFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_tasklistfragment, menu);
+
     }
 
     @Override
@@ -60,15 +61,20 @@ public class TaskListDisplayFragment extends Fragment {
             taskcreateIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
             startActivity(taskcreateIntent);
 
-
-
-
-           
-
-
                 return true;
 
         }
+
+        if (id == R.id.action_show_locations) {
+
+            Intent showLocationsIntent = new Intent(getActivity(), LocationListDisplayActivity.class);
+            boolean taskInfo = false;
+            showLocationsIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
+            startActivity(showLocationsIntent);
+
+            return true;
+        }
+
             return super.onOptionsItemSelected(item);
     }
 

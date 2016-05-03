@@ -9,4 +9,9 @@
         android:title="@string/action_task_create"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_show_locations"
+        android:title="Show Locations"
+        app:showAsAction="never" />
+
 </menu>
