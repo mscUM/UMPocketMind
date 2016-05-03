@@ -22,6 +22,18 @@ public class LocationManager {
             DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE
     };
 
+    public void insertMockDataIntoDatabase() {
+        Location locationParadeplatz = new Location(998, "Paradeplatz", "This is Paradeplatz", 8.4660542, 49.4874131);
+        createLocation(locationParadeplatz);
+        Location locationSidney = new Location(997, "Sidney", "This is Sidney", 151.2069902, -33.8674869);
+        createLocation(locationSidney);
+    }
+
+    public void deleteMockDataFromDatabase() {
+        deleteLocationById(998);
+        deleteLocationById(997);
+    }
+
 
     public LocationManager(Context context) {
         databaseConnectorLocations = new DatabaseConnectorLocations(context);
