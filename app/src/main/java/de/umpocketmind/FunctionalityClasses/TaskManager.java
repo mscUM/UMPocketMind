@@ -22,6 +22,23 @@ public class TaskManager {
     };
     private TaskLocationsManager taskLocationsManager;
 
+    private Task mockTaskBuyIceCream;
+    private Task mockTaskVisitSidney;
+
+    private void insertMockTasksIntoDatabase() {
+        Task buyIceCream = new Task(0, "Ice Cream", "Buy some ice cream", 0.5);
+        mockTaskBuyIceCream = createTask(buyIceCream);
+        Task visitSidney = new Task(0, "Visit Sidney", "Visit the awesome city of Sidney", 5);
+        mockTaskVisitSidney = createTask(visitSidney);
+        Log.i("LocationMgr", "Mock tasks added to database.");
+    }
+
+    private void deleteMockTasksFromDatabase() {
+        deleteTaskById(mockTaskBuyIceCream.getId());
+        deleteTaskById(mockTaskVisitSidney.getId());
+        Log.i("LocationMgr", "Mock tasks deleted from database.");
+    }
+
 
     public TaskManager(Context context) {
         databaseConnectorTasks = new DatabaseConnectorTasks(context);
@@ -33,9 +50,11 @@ public class TaskManager {
         taskDatabase = databaseConnectorTasks.getWritableDatabase();
         taskLocationsManager.open();
         Log.i("TaskMgr", "Database opened.");
+        insertMockTasksIntoDatabase();
     }
 
     public void close() {
+        deleteMockTasksFromDatabase();
         databaseConnectorTasks.close();
         taskLocationsManager.close();
         Log.i("TaskMgr", "Database closed.");
