@@ -89,18 +89,7 @@ public class TaskListDisplayFragment extends Fragment {
         Log.w(LOG_TAG, "warning     - Meldung");
         Log.e(LOG_TAG, "error       - Meldung");
 
-        String [] taskListArray = {
-                "Task 1",
-                "Task 2",
-                "Task 3",
-                "Task 4",
-                "Task 5",
-                "Task 6",
-                "Task 7",
-                "Task 8",
-                "Task 9"
-
-                };
+        String taskListArray = "tasks.db";
 
 
 
