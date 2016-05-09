@@ -26,9 +26,9 @@ public class TaskManager {
     private Task mockTaskVisitSidney;
 
     private void insertMockTasksIntoDatabase() {
-        Task buyIceCream = new Task(0, "Ice Cream", "Buy some ice cream", 0.5);
+        Task buyIceCream = new Task(0, "Ice Cream", "Buy some ice cream", 500);
         mockTaskBuyIceCream = createTask(buyIceCream);
-        Task visitSidney = new Task(0, "Visit Sidney", "Visit the awesome city of Sidney", 5);
+        Task visitSidney = new Task(0, "Visit Sidney", "Visit the awesome city of Sidney", 5000);
         mockTaskVisitSidney = createTask(visitSidney);
         Log.i("LocationMgr", "Mock tasks added to database.");
     }
@@ -73,8 +73,7 @@ public class TaskManager {
             taskLocationsManager.createTaskLocation(newTask, location);
         }
 
-        Task task = getTaskById(insertTaskId);
-        return task;
+        return getTaskById(insertTaskId);
     }
 
     public ArrayList<Task> getAllTasks() {
@@ -96,6 +95,22 @@ public class TaskManager {
         Log.i("TaskMgr", "All Tasks fetched from Database.");
 
         return taskList;
+    }
+
+    public ArrayList<Task> sortTasksByDistance(ArrayList<Task> taskList, double longtitude, double latitude) {
+        ArrayList<Task> sortedTaskList = taskList;
+
+        //Todo: sort taskList by distance
+
+        return sortedTaskList;
+    }
+
+    public boolean isUserPositionInTaskRange(Task task, double longtitude, double latitude) {
+        boolean userPositionIsInTaskRange = false;
+
+        //Todo: check if at least one location of the task is near enough
+
+        return userPositionIsInTaskRange;
     }
 
     public void updateTask(Task newTask) {
