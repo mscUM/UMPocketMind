@@ -2,11 +2,18 @@
 
 package de.umpocketmind.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import de.umpocketmind.FunctionalityClasses.Location;
+import de.umpocketmind.FunctionalityClasses.Task;
 import de.umpocketmind.R;
 
 
@@ -37,4 +44,25 @@ public class TaskDisplayActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private void showtaskDetail()
+    {
+        Intent taskDisplayIntent = getIntent();
+        Task taskDisplay = (Task) taskDisplayIntent.getSerializableExtra("TaskDisplay");
+        String taskName = taskDisplay.getName();
+        String taskDescription = taskDisplay.getDescription();
+        double taskRange = taskDisplay.getRange();
+        ArrayList<Location> taskLocation = taskDisplay.getLocations();
+
+        TextView taskNameView = (TextView) findViewById(R.id.TaskName);
+        TextView taskDescriptionView = (TextView) findViewById(R.id.TaskDescription);
+        //TextView taskRangeView = (TextView) findViewById(R.id.TaskRange);
+        //TextView taskLocationView = (TextView) findViewById(R.id.TaskLocation);
+        taskNameView.setText(taskName);
+        taskDescriptionView.setText(taskDescription);
+        // need double type!        taskRangeView.setCameraDistance(taskRange);
+        // need array type!         taskLocationView.setText(taskLocation);
+    }
+
 }

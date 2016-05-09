@@ -4,6 +4,7 @@ package de.umpocketmind.Activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ public class TaskCreateActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_create);
+        setContentView(R.layout.fragment_task_create);
         Toast.makeText(this, "Started TaskCreateActivity", Toast.LENGTH_SHORT).show();
     }
 

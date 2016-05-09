@@ -1,3 +1,5 @@
+/*
+
 //author: Janos
 
 package de.umpocketmind.Activities;
@@ -15,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,7 +103,7 @@ public class TaskListDisplayFragment extends Fragment {
                         R.id.list_item_tasklist_textview,
                         taskList);
 
-        View rootView = inflater.inflate(R.layout.fragment_tasklist, container, false);
+        View rootView = inflater.inflate(R.layout.activity_task_list_display, container, false);
 
         ListView tasklistListView = (ListView) rootView.findViewById(R.id
                 .Listview_TaskList);
@@ -129,3 +130,4 @@ public class TaskListDisplayFragment extends Fragment {
 
 
 }
+*/

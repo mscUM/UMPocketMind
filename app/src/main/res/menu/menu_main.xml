@@ -12,5 +12,16 @@ tools:context=".TaskListDisplayActivity">
     android:orderInCategory="100"
     app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_task_create"
+        android:title="@string/action_task_create"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_show_locations"
+        android:title="Show Locations"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 
 </menu>

@@ -1,12 +1,13 @@
 package de.umpocketmind.FunctionalityClasses;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import android.util.Log;
 
 /**
  * Created by eva on 24.04.16.
  */
-public class Task {
+public class Task implements Serializable {
 
     private long id;
     private String name;
