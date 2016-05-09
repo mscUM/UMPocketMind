@@ -2,10 +2,12 @@ package de.umpocketmind.FunctionalityClasses;
 
 import android.util.Log;
 
+import java.io.Serializable;
+
 /**
  * Created by eva on 24.04.16.
  */
-public class Location {
+public class Location implements Serializable {
 
     private long id;
     private String name;
