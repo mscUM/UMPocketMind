@@ -63,8 +63,6 @@ public class Location implements Serializable {
     @Override
     public String toString()
     {
-        String ausgabe = latitude + " - " + longtitude;
-        Log.i("Loc-Longitude: ", ausgabe);
         return this.name + ", " + this.description + ", " + this.longtitude + ", " + this.latitude;
 
     }

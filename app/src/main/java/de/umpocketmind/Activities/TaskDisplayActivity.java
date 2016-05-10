@@ -34,7 +34,7 @@ public class TaskDisplayActivity extends AppCompatActivity{
 
     public void showTasksOnMap(View v){
         String allLocation = "";
-        allLocation = "" + currentTask.getLocations();
+        allLocation = "" + currentTask;
 
         Toast.makeText(this, allLocation, Toast.LENGTH_SHORT).show();
         /*

@@ -68,8 +68,33 @@ public class TaskCreateActivity extends AppCompatActivity{
         final ListView taskLocationListView = (ListView) findViewById(R.id.taskCreate_ListViewTaskLocations);
         taskLocationListView.setAdapter(taskArrayAdapter);
         locationManager.close();
-        taskLocationListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        //taskLocationListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        taskLocationListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        /*taskLocationListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.i("ICH BIN HIER", "");
+            }
+        });
 
+        SparseBooleanArray checked = taskLocationListView.getCheckedItemPositions();
+        ArrayList<String> selectedItems = new ArrayList<String>();
+        for (int i = 0; i < checked.size(); i++) {
+            Log.i("ICH BIN HIER!", i + "");
+            // Item position in adapter
+            int position = checked.keyAt(i);
+            // Add sport if it is checked i.e.) == TRUE!
+            if (checked.valueAt(i))
+                selectedItems.add(adapter.getItem(position));
+        }
+
+        String[] outputStrArr = new String[selectedItems.size()];
+
+        for (int i = 0; i < selectedItems.size(); i++) {
+            //outputStrArr[i] = selectedItems.get(i);
+            Log.i("outputStrArr[i]", selectedItems.get(i));
+        }
+        */
 
     }//getAllLocations
 
@@ -92,21 +117,7 @@ public class TaskCreateActivity extends AppCompatActivity{
         taskManager.open();
         taskManager.close();
 
-        SparseBooleanArray checked = ListView.getCheckedItemPositions();
-        ArrayList<String> selectedItems = new ArrayList<String>();
-        for (int i = 0; i < checked.size(); i++) {
-            // Item position in adapter
-            int position = checked.keyAt(i);
-            // Add sport if it is checked i.e.) == TRUE!
-            if (checked.valueAt(i))
-                selectedItems.add(adapter.getItem(position));
-        }
 
-        String[] outputStrArr = new String[selectedItems.size()];
-
-        for (int i = 0; i < selectedItems.size(); i++) {
-            outputStrArr[i] = selectedItems.get(i);
-        }
     }
 /*
                 String stringName = editTextName.getText().toString();
