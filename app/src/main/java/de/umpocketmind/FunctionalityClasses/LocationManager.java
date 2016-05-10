@@ -136,8 +136,8 @@ public class LocationManager {
         long id = cursor.getLong(idIndex);
         String name = cursor.getString(idName);
         String description = cursor.getString(idDescription);
-        double longtitude = cursor.getInt(idLongtitude);
-        double latitude = cursor.getInt(idLatitude);
+        double longtitude = cursor.getDouble(idLongtitude);
+        double latitude = cursor.getDouble(idLatitude);
 
         Location location = new Location(id, name, description, longtitude, latitude);
 
