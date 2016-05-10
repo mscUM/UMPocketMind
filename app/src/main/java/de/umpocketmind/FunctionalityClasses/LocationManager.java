@@ -65,7 +65,8 @@ public class LocationManager {
         values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE, newLocation.getLatitude());
 
         long insertId = database.insert(DatabaseConnectorLocations.TABLE_LOCATIONS, null, values);
-        Log.i("LocationMgr", "Location inserted into Database.");
+        String message = "Location inserted into Database. Longtitude: " + newLocation.getLongtitude() + " - Latitude: " + newLocation.getLatitude();
+        Log.i("IMPORTANT", message);
 
         Location location = getLocationById(insertId);
         return location;
