@@ -22,24 +22,6 @@ public class LocationManager {
             DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE
     };
 
-    private Location mockLocationParadeplatz;
-    private Location mockLocationSidney;
-
-    private void insertMockLocationsIntoDatabase() {
-        Location locationParadeplatz = new Location(0, "Paradeplatz", "This is Paradeplatz", 8.4660542, 49.4874131);
-        mockLocationParadeplatz = createLocation(locationParadeplatz);
-        Location locationSidney = new Location(0, "Sidney", "This is Sidney", 151.2069902, -33.8674869);
-        mockLocationSidney = createLocation(locationSidney);
-        Log.i("LocationMgr", "Mock locations added to database.");
-    }
-
-    private void deleteMockLocationsFromDatabase() {
-        deleteLocationById(mockLocationParadeplatz.getId());
-        deleteLocationById(mockLocationSidney.getId());
-        Log.i("LocationMgr", "Mock locations deleted from database.");
-    }
-
-
     public LocationManager(Context context) {
         databaseConnectorLocations = new DatabaseConnectorLocations(context);
         Log.i("LocationMgr", "LocationManager created.");
@@ -48,11 +30,9 @@ public class LocationManager {
     public void open() {
         database = databaseConnectorLocations.getWritableDatabase();
         Log.i("LocationMgr", "Database opened.");
-        insertMockLocationsIntoDatabase();
     }
 
     public void close() {
-        deleteMockLocationsFromDatabase();
         databaseConnectorLocations.close();
         Log.i("LocationMgr", "Database closed.");
     }
