@@ -23,17 +23,18 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.location.LocationServices;
 import java.util.ArrayList;
 import de.umpocketmind.Activities.TaskListDisplayActivity;
+import de.umpocketmind.FunctionalityClasses.GoogleAPIConnector;
 import de.umpocketmind.FunctionalityClasses.Task;
 import de.umpocketmind.FunctionalityClasses.TaskManager;
 
 /**
  * Created by eva on 09.05.16.
  */
-public class UserPositionTaskCheck extends IntentService
-        implements ConnectionCallbacks, OnConnectionFailedListener {
+public class UserPositionTaskCheck extends IntentService {
+        //implements ConnectionCallbacks, OnConnectionFailedListener {
 
     private boolean serviceIsCheckingPositions;
-    private GoogleApiClient mGoogleApiClient;
+    //private GoogleApiClient mGoogleApiClient;
 
     public UserPositionTaskCheck() {
         super("WorkThreadName");
@@ -56,7 +57,9 @@ public class UserPositionTaskCheck extends IntentService
         TaskManager taskManager = new TaskManager(this);
         ArrayList<Task> taskList;
         boolean userShouldBeNotified = false;
+        GoogleAPIConnector googleAPIConnector = new GoogleAPIConnector(this);
 
+        /*
         // Create an instance of GoogleAPIClient
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -65,31 +68,34 @@ public class UserPositionTaskCheck extends IntentService
                 .build();
         // Start connection of GoogleAPIClient
         mGoogleApiClient.connect();
+        */
 
         while(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
             // Get current position of the user
-            Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            //Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            Location mLastLocation = googleAPIConnector.getCurrentUserPosition();
 
             if (mLastLocation != null) {
+                Log.v("BACKEND", "Position ist nicht null!!!");
                 longtitude = mLastLocation.getLongitude();
                 latitude = mLastLocation.getLatitude();
-                Log.v("BACKEND", "LÄUFT");
-            }
-            Log.i("Martin", "will testen");
-            // Find out if a task is within its range
-            taskManager.open();
-            taskList = taskManager.getAllTasks();
-            for (Task task: taskList ) {
-                if(taskManager.isUserPositionInTaskRange(task, longtitude, latitude)) {
-                    userShouldBeNotified = true;
-                    break;
+
+                // Find out if a task is within its range
+                taskManager.open();
+                taskList = taskManager.getAllTasks();
+                for (Task task : taskList) {
+                    if (taskManager.isUserPositionInTaskRange(task, longtitude, latitude)) {
+                        userShouldBeNotified = true;
+                        break;
+                    }
                 }
+                taskManager.close();
             }
-            taskManager.close();
+            Log.i("BACKEND", "Na, steht irgendwo über mir 'Position ist nicht null'?");
 
             // End loop to send a notification
-            if(userShouldBeNotified) {
+            if (userShouldBeNotified) {
                 break;
             }
 
@@ -102,7 +108,7 @@ public class UserPositionTaskCheck extends IntentService
         }
 
         // Stop connection of GoogleAPIClient
-        mGoogleApiClient.disconnect();
+        //mGoogleApiClient.disconnect();
     }
 
     private void sendNotification() {
@@ -133,6 +139,7 @@ public class UserPositionTaskCheck extends IntentService
         mNotificationManager.notify(mId, mBuilder.build());
     }
 
+    /*
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -149,4 +156,5 @@ public class UserPositionTaskCheck extends IntentService
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+    */
 }
