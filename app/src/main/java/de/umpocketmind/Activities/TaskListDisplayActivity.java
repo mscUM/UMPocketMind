@@ -35,6 +35,7 @@ public class TaskListDisplayActivity extends ActionBarActivity {
         taskManager = new TaskManager(this);
 
         //todo: das hier wieder wegnehmen
+
         Location locationLondon = new Location(0, "London", "Hi! London here!", -0.070035, 51.5073262);
         Location locationMannheim = new Location(0, "Mannheim", "Das ist Mannheim", 8.3619924, 49.4999557);
         Location locationParis = new Location(0, "Paris", "This is Paris", 2.2945071, 48.8582606);
@@ -55,6 +56,7 @@ public class TaskListDisplayActivity extends ActionBarActivity {
         taskManager.createTask(taskHoliday);
         taskManager.createTask(taskStudy);
         taskManager.close();
+
         //todo: endtodo
     }
 

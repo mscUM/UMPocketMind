@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.umpocketmind.FunctionalityClasses.Location;
 import de.umpocketmind.FunctionalityClasses.Task;
@@ -55,18 +58,33 @@ public class TaskDisplayActivity extends AppCompatActivity{
         Intent receivedIntent = getIntent();
         if (receivedIntent != null && receivedIntent.hasExtra("currentTask"))
         {
-            //Toast.makeText(this, receivedIntent.getExtras().toString(), Toast.LENGTH_SHORT).show();
+
             currentTask = (Task) receivedIntent.getSerializableExtra("currentTask");
-            //Log.i("getExtras", receivedIntent.getExtras().toString());
-            //taskLocations = currentTask.getLocations();
+
+            /*final List<Location> taskLocationsList = currentTask.getLocations();
+            Log.i("§§", currentTask.toString());
+
+            ArrayAdapter<Location> taskLocationArrayAdapter =
+                    new ArrayAdapter<>
+                            (
+                                    this,
+                                    android.R.layout.select_dialog_multichoice,
+                                    taskLocationsList
+                            );
+            ListView taskLocationsListView = (ListView) findViewById(R.id.taskDetail_Locations);
+            taskLocationsListView.setAdapter(taskLocationArrayAdapter);
+            */
             Location dummyLocation = new Location(0, "LearningCenter", "LC UNI", 8.461785999999961, 49.4829556);
             taskLocations.add(dummyLocation);
+            currentTask.addLocationToTask(dummyLocation);
             TextView taskNameTextView = (TextView) findViewById(R.id.taskDetail_name);
             TextView taskDescTextView = (TextView) findViewById(R.id.taskDetail_description);
             TextView taskRangeTextView = (TextView) findViewById(R.id.taskDetail_range);
+            TextView taskLocationTextView = (TextView) findViewById(R.id.taskDetail_Locations);
             taskNameTextView.setText(currentTask.getName().toString());
             taskDescTextView.setText(currentTask.getDescription().toString());
             taskRangeTextView.setText(currentTask.getRange() + "");
+            taskLocationTextView.setText((currentTask.getLocations())+ "");
         }
     }
 

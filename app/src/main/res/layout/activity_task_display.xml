@@ -35,6 +35,12 @@ Button Show Locations on Map
         android:layout_height="wrap_content"
         android:layout_below="@id/taskDetail_description"
         />
+
+    <TextView
+        android:id="@+id/taskDetail_Locations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
