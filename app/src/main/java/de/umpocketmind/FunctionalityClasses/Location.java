@@ -59,4 +59,14 @@ public class Location implements Serializable {
         this.latitude = latitude;
         Log.i("Location", "Location-Object-Latitude updated:" + this.latitude);
     }
+
+    @Override
+    public String toString()
+    {
+        String ausgabe = latitude + " - " + longtitude;
+        Log.i("Loc-Longitude: ", ausgabe);
+        return this.name + ", " + this.description + ", " + this.longtitude + ", " + this.latitude;
+
+    }
+
 }
