@@ -64,6 +64,6 @@ public class Task implements Serializable {
     @Override
     public String toString()
     {
-        return this.id + ", " + this.name + ", " + this.description + ", " + this.range;
+        return this.id + ", " + this.name + ", " + this.description + ", " + this.range + ", " + this.locations;
     }
 }

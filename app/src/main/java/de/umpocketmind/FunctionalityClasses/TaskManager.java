@@ -45,6 +45,7 @@ public class TaskManager {
         Task buyIceCream = new Task(0, "Ice Cream", "Buy some ice cream", 500);
         buyIceCream.addLocationToTask(mockLocationForIceCreamParadeplatz);
         buyIceCream.addLocationToTask(mockLocationForIceCreamWasserturm);
+        Log.i("Testdata mit Locations:", buyIceCream.toString());
         mockTaskBuyIceCream = createTask(buyIceCream);
         Task visitSidney = new Task(0, "Visit Sidney", "Visit the awesome city of Sidney", 5000);
         visitSidney.addLocationToTask(mockLocationForVisitSidney);
@@ -91,7 +92,7 @@ public class TaskManager {
 
         long insertTaskId = taskDatabase.insert(DatabaseConnectorTasks.TABLE_TASKS, null, taskValues);
         Log.i("TaskMgr", "Task inserted into Database.");
-
+        Log.i("Test2", newTask.getLocations().toString());
         for (Location location: newTask.getLocations()) {
             taskLocationsManager.createTaskLocation(newTask, location);
         }
@@ -110,7 +111,15 @@ public class TaskManager {
 
         while(!cursor.isAfterLast()) {
             task = cursorToTask(cursor);
+
+            //Add locations to that task
+            ArrayList<Location> taskLocationList = taskLocationsManager.getAllTaskLocationsForTask(task);
+            for (Location taskLocation: taskLocationList) {
+                task.addLocationToTask(taskLocation);
+            }
+
             taskList.add(task);
+            Log.i("2############", task.toString());
             cursor.moveToNext();
         }
 
@@ -178,6 +187,13 @@ public class TaskManager {
         cursor.moveToFirst();
         Task task = cursorToTask(cursor);
         cursor.close();
+
+        //Add locations to that task
+        ArrayList<Location> taskLocationList = taskLocationsManager.getAllTaskLocationsForTask(task);
+        for (Location taskLocation: taskLocationList) {
+            task.addLocationToTask(taskLocation);
+        }
+        Log.i("#############", task.toString());
         Log.i("TaskMgr", "Task fetched from Database. Id: " +id);
 
         return task;
