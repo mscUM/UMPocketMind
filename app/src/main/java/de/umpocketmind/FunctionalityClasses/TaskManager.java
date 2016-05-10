@@ -5,14 +5,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.database.Cursor;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import android.util.Log;
 
 /**
  * Created by eva on 24.04.16.
  */
 public class TaskManager {
-
-    private Context context;
 
     private SQLiteDatabase taskDatabase;
     private DatabaseConnectorTasks databaseConnectorTasks;
@@ -32,15 +32,12 @@ public class TaskManager {
 
     private void insertMockTasksIntoDatabase() {
         // Add Mock Locations
-        //LocationManager locationManager = new LocationManager(context);
-        //locationManager.open();
         Location locationForIceCreamParadeplatz = new Location(0, "ParadeplatzFürTask", "Paradeplatz für Task", 8.4660542, 49.4874131);
         Location locationForIceCreamWasserturm = new Location(0, "WasserturmFürTask", "Wasserturm für Task", 8.4733678, 49.4840612);
         Location locationForVisitSidney = new Location(0, "SidneyFürTask", "Sidney für Task", 151.2069902, -33.8674869);
         mockLocationForIceCreamParadeplatz = taskLocationsManager.locationManager.createLocation(locationForIceCreamParadeplatz);
         mockLocationForIceCreamWasserturm = taskLocationsManager.locationManager.createLocation(locationForIceCreamWasserturm);
         mockLocationForVisitSidney = taskLocationsManager.locationManager.createLocation(locationForVisitSidney);
-        //locationManager.close();
         // Add Mock Tasks
         Task buyIceCream = new Task(0, "Ice Cream", "Buy some ice cream", 500);
         buyIceCream.addLocationToTask(mockLocationForIceCreamParadeplatz);
@@ -64,7 +61,6 @@ public class TaskManager {
 
 
     public TaskManager(Context context) {
-        this.context = context;
         databaseConnectorTasks = new DatabaseConnectorTasks(context);
         taskLocationsManager = new TaskLocationsManager(context);
         Log.i("TaskMgr", "TaskManager created.");
@@ -131,8 +127,33 @@ public class TaskManager {
 
     public ArrayList<Task> sortTasksByDistance(ArrayList<Task> taskList, double longtitude, double latitude) {
         ArrayList<Task> sortedTaskList = taskList;
+        float[] results = new float[1];
 
-        //Todo: sort taskList by distance
+        while (!taskList.isEmpty()) {
+            // initialize nearest Task
+            Task nearestTask = null;
+            float nearestTaskDistance = -1;
+            // go through list of tasks to determine nearest task
+            for (Task task: taskList) {
+                // initialize nearest location of a task
+                Location nearestLocation = null;
+                float nearestLocationDistance = -1;
+                // go through list of locations to determine nearest location of a task
+                for (Location taskLocation: task.getLocations()) {
+                    android.location.Location.distanceBetween(latitude, longtitude, taskLocation.getLatitude(), taskLocation.getLongtitude(), results);
+                    if (nearestLocationDistance < 0 || results[0] < nearestLocationDistance) {
+                        nearestLocation = taskLocation;
+                        nearestLocationDistance = results[0];
+                    }
+                }
+                if (nearestTaskDistance < 0 || nearestLocationDistance < nearestTaskDistance) {
+                    nearestTask = task;
+                    nearestTaskDistance = nearestLocationDistance;
+                }
+            }
+            sortedTaskList.add(nearestTask);
+            taskList.remove(nearestTask);
+        }
 
         return sortedTaskList;
     }
