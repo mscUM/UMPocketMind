@@ -23,4 +23,11 @@ tools:context=".TaskListDisplayActivity">
         android:title="Add Locations"
         android:orderInCategory="100"
         app:showAsAction="never" />
+
+    <!--><item
+        android:id="@+id/action_add_Mapslocation"
+        android:title="Add Map Locations"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+        <-->
 </menu>

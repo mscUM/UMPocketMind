@@ -115,7 +115,7 @@ public class LocationListDisplayActivity extends AppCompatActivity {
         // Check which option was selected
         if (id == R.id.action_location_create) {
             // create intent and start LocationCreateActivity with explicit intent
-            Intent locationcreateIntent = new Intent(this, LocationCreateActivity.class);
+            Intent locationcreateIntent = new Intent(this, LocationCreateActivityTest.class);
             boolean taskInfo = false;
             locationcreateIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
             startActivity(locationcreateIntent);

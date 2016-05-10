@@ -61,6 +61,14 @@ public class LocationCreateActivityTest extends AppCompatActivity {
         locationManager.createLocation(newLocation);
         locationManager.close();
 
+
+        Toast.makeText(this, "Location added", Toast.LENGTH_SHORT).show();
+        locationNameEditText.setText("");
+        locationDescEditText.setText("");
+        locationLongitudeEditText.setText("");
+        locationLatitudeEditText.setText("");
+
+
     }
 
 }

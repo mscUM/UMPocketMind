@@ -1,6 +1,7 @@
 //author: Janos and Martin
 package de.umpocketmind.Activities;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class TaskCreateActivity extends AppCompatActivity{
     private TaskManager taskManager;
     private LocationManager locationManager;
     ArrayAdapter<String> adapter;
+    private ArrayList<Location> taskLocations = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +72,25 @@ public class TaskCreateActivity extends AppCompatActivity{
         locationManager.close();
         //taskLocationListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         taskLocationListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        /*taskLocationListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        Log.i("ich bin hier", "ich bin hier");
+        taskLocationListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Log.i("ICH BIN HIER", "");
+                Log.i("ICH BIN HIER", "ICH BIN HIER"); // will be displayed
             }
         });
 
+        /*Log.i("ICH bin HIER", "ICH bin HIER"); // won't be displayed --> stops in between
+        SparseBooleanArray checked = taskLocationListView.getCheckedItemPositions();
+
+        for (int i = 0; i < checked.size(); i++) {
+            if(checked.valueAt(i) == true) {
+                Tag tag = (Tag) taskLocationListView.getItemAtPosition(checked.keyAt(i));
+                Log.i("xxxx", i + " " + tag);
+            }
+        }
+*/
+        /*
         SparseBooleanArray checked = taskLocationListView.getCheckedItemPositions();
         ArrayList<String> selectedItems = new ArrayList<String>();
         for (int i = 0; i < checked.size(); i++) {
@@ -87,7 +101,7 @@ public class TaskCreateActivity extends AppCompatActivity{
             if (checked.valueAt(i))
                 selectedItems.add(adapter.getItem(position));
         }
-
+        /*
         String[] outputStrArr = new String[selectedItems.size()];
 
         for (int i = 0; i < selectedItems.size(); i++) {
@@ -109,12 +123,50 @@ public class TaskCreateActivity extends AppCompatActivity{
 
         String taskName = taskNameEditText.getText().toString();
         String taskDesc = taskDescEditText.getText().toString();
-        Double taskRange = new Double(taskRangeEditText.getText().toString());
+        double taskRange = Double.valueOf(taskRangeEditText.getText().toString());
+
 
 
         Toast.makeText(this, "taskname: " + taskName + " Desc: " + taskDesc + " Range: " + taskRange, Toast.LENGTH_SHORT).show();
 
         taskManager.open();
+
+        Task AddedTask = new Task(0, taskName, taskDesc, taskRange);
+
+        Location dummyLocation = new Location(0, "LearningCenter", "LeCe UNI", 8.461785999999961, 49.4829556);
+        taskLocations.add(dummyLocation);
+
+        // locations einfügen
+
+        /*public Task(long id, String name, String description, double range) {
+        this.id = id;
+        this.name = taskName;
+        this.description = taskDesc;
+        this.range = taskRange;
+        this.locations = new ArrayList<>();
+        Log.i("Task", "Task-Object created:" + this.id + this.name + this.description + this.range + this.locations);
+
+
+    }*/
+
+
+
+       /* public addTaskToList(String taskName, String taskDesc, double taskRange, Location dummyLocation)
+        {
+            this.taskName = taskName;
+            this.taskDesc = taskDesc;
+            this.taskRange = taskRange;
+            this.dummyLocation = dummyLocation;
+        }
+
+    }*/
+
+        /*Task addedTask = new Task() {
+                String taskName;
+                String taskDesc;
+                Double taskRange;*/
+
+
         taskManager.close();
 
 
