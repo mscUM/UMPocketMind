@@ -229,7 +229,7 @@ public class TaskManager {
         long id = cursor.getLong(idIndex);
         String name = cursor.getString(nameIndex);
         String description = cursor.getString(descriptionIndex);
-        int range = cursor.getInt(rangeIndex);
+        double range = cursor.getInt(rangeIndex);
 
         Task task = new Task(id, name, description, range);
 
