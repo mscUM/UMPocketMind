@@ -85,6 +85,8 @@ public class LocationManager {
         while(!cursor.isAfterLast()) {
             location = cursorToLocation(cursor);
             locationList.add(location);
+            String message = "Location retrieved into Database. Longtitude: " + location.getLongtitude() + " - Latitude: " + location.getLatitude();
+            Log.i("IMPORTANT", message);
             cursor.moveToNext();
         }
 
