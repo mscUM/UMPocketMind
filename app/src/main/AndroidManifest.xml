@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".UserPositionTaskCheck"
+            android:name=".Services.UserPositionTaskCheck"
             android:enabled="true"
             android:exported="true" />
 
@@ -45,40 +45,5 @@
     </application>
 
 
-    <!-->
-
-        // declare TaskListDisplayActivity
-        <activity
-            android:name="TaskListDisplayActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        // declare TaskDisplayActivity
-        <activity
-            android:name=".TaskDisplayActivity"
-            android:label="@string/title_activity_taskdisplay"
-            android:parentActivityName=".TaskListDisplayActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TaskListDisplayActivity" />
-        </activity>
-
-        // declare TaskCreateActivity
-        <activity
-            android:name=".TaskCreateActivity"
-            android:label="@string/title_activity_taskcreate"
-            android:parentActivityName=".TaskListDisplayActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TaskListDisplayActivity" />
-
-        </activity>
-
-    <-->
 
 </manifest>

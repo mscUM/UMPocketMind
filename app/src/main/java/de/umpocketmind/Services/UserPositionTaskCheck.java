@@ -1,4 +1,4 @@
-package de.umpocketmind;
+package de.umpocketmind.Services;
 
 import android.Manifest;
 import android.app.IntentService;

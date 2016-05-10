@@ -1,19 +1,13 @@
-//author: Janos
+//author: Martin and Janos
 
 package de.umpocketmind.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-
-import de.umpocketmind.FunctionalityClasses.Location;
 import de.umpocketmind.FunctionalityClasses.Task;
 import de.umpocketmind.R;
 
@@ -30,16 +24,26 @@ public class TaskDisplayActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //showtaskDetail();
     }
 
     private void showtaskDetail()
     {
-        Intent receivedIntent = TaskDisplayActivity.this.getIntent();
-        if (receivedIntent != null && receivedIntent.hasExtra(Intent.EXTRA_TEXT))
+
+        Intent receivedIntent = getIntent();
+        if (receivedIntent != null && receivedIntent.hasExtra("currentTask"))
         {
-            Toast.makeText(this, "IstDa", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, receivedIntent.getExtras().toString(), Toast.LENGTH_SHORT).show();
+            Task currentTask = (Task) receivedIntent.getSerializableExtra("currentTask");
+            //Log.i("getExtras", receivedIntent.getExtras().toString());
+
+            TextView taskNameTextView = (TextView) findViewById(R.id.taskDetail_name);
+            TextView taskDescTextView = (TextView) findViewById(R.id.taskDetail_description);
+            TextView taskRangeTextView = (TextView) findViewById(R.id.taskDetail_range);
+            taskNameTextView.setText(currentTask.getName().toString());
+            taskDescTextView.setText(currentTask.getDescription().toString());
+            taskRangeTextView.setText(currentTask.getRange() + "");
         }
     }
 
 }
+

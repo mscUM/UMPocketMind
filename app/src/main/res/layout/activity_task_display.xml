@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-->
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_task_display"
-    android:name="de.umpocketmind.Activities.TaskDisplayFragment"
-    tools:layout="@layout/fragment_task_display"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+@Martin
+Relative layout which contains the TextViews for the attributes "name", "description", "range" of Task
+Button Show Locations on Map
 <-->
+
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,13 +17,28 @@
     >
 
     <TextView
-        android:id="@+id/taskDetail_text"
+        android:id="@+id/taskDetail_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 
+    <TextView
+        android:id="@+id/taskDetail_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/taskDetail_name"
+        />
+
+    <TextView
+        android:id="@+id/taskDetail_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/taskDetail_description"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/taskDetail_ButtonShowOnMap"
-        android:text="Show Task on Map"/>
+        android:text="Show Task on Map"
+        android:layout_below="@id/taskDetail_range"/>
 </RelativeLayout>
