@@ -31,10 +31,8 @@ import de.umpocketmind.FunctionalityClasses.TaskManager;
  * Created by eva on 09.05.16.
  */
 public class UserPositionTaskCheck extends IntentService {
-        //implements ConnectionCallbacks, OnConnectionFailedListener {
 
     private boolean serviceIsCheckingPositions;
-    //private GoogleApiClient mGoogleApiClient;
 
     public UserPositionTaskCheck() {
         super("WorkThreadName");
@@ -59,21 +57,9 @@ public class UserPositionTaskCheck extends IntentService {
         boolean userShouldBeNotified = false;
         GoogleAPIConnector googleAPIConnector = new GoogleAPIConnector(this);
 
-        /*
-        // Create an instance of GoogleAPIClient
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        // Start connection of GoogleAPIClient
-        mGoogleApiClient.connect();
-        */
-
         while(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
             // Get current position of the user
-            //Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             Location mLastLocation = googleAPIConnector.getCurrentUserPosition();
 
             if (mLastLocation != null) {
@@ -106,9 +92,6 @@ public class UserPositionTaskCheck extends IntentService {
         if (userShouldBeNotified) {
             sendNotification();
         }
-
-        // Stop connection of GoogleAPIClient
-        //mGoogleApiClient.disconnect();
     }
 
     private void sendNotification() {
@@ -138,23 +121,4 @@ public class UserPositionTaskCheck extends IntentService {
         int mId = 0;
         mNotificationManager.notify(mId, mBuilder.build());
     }
-
-    /*
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-    */
 }
