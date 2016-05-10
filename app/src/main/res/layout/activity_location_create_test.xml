@@ -33,14 +33,27 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/locationCreate_TextViewRange"
-        android:text="Range"
+        android:id="@+id/locationCreate_TextViewLongitude"
+        android:text="Longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/locationCreate_EditTextRange"
-        android:inputType="number"
+        android:id="@+id/locationCreate_EditTextLongitude"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/locationCreate_TextViewLatitude"
+        android:text="Latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/locationCreate_EditTextLatitude"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
