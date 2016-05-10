@@ -31,8 +31,13 @@ public class TaskMapDisplayActivity extends FragmentActivity implements OnMapRea
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Intent receivedIntent = getIntent();
+        Log.i("§§§§§§§", receivedIntent.toString());
         if (receivedIntent != null && receivedIntent.hasExtra("allLocations")){
-            //receivedLocations = (Location) receivedIntent.getSerializableExtra("allLoactions");
+            receivedLocations = (ArrayList<Location>)receivedIntent.getSerializableExtra("allLoactions");
+
+            String ausgabe;
+            //for (Location )
+            //Log.i("&&",ausgabe);
         }
 
     }
@@ -48,3 +53,25 @@ public class TaskMapDisplayActivity extends FragmentActivity implements OnMapRea
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
+
+/*
+// Create an instance of GoogleAPIClient
+        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+        // Start connection of GoogleAPIClient
+        mGoogleApiClient.connect();
+
+        while(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+            // Get current position of the user
+            Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+            if (mLastLocation != null) {
+                longtitude = mLastLocation.getLongitude();
+                latitude = mLastLocation.getLatitude();
+                Log.v("BACKEND", "LÄUFT");
+            }
+ */

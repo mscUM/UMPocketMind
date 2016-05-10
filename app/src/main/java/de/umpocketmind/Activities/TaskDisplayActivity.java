@@ -43,7 +43,7 @@ public class TaskDisplayActivity extends AppCompatActivity{
 
         Intent taskShowLocIntent = new Intent();
         taskShowLocIntent.setClass(TaskDisplayActivity.this, TaskMapDisplayActivity.class);
-        taskShowLocIntent.putExtra("allLocations", taskLocations);
+        taskShowLocIntent.putExtra("allLocations", (ArrayList<Location>) taskLocations);
         TaskDisplayActivity.this.startActivity(taskShowLocIntent);
 
     }

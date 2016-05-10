@@ -44,10 +44,12 @@ public class TaskListDisplayActivity extends ActionBarActivity {
 
             String[] myPermissions = {"ACCESS_FINE_LOCATION"};
             ActivityCompat.requestPermissions(this, myPermissions, 1);
+            Log.i("Eva", "permission denied");
 
         }else{
             Intent i = new Intent(this, UserPositionTaskCheck.class);
             startService(i);
+            Log.i("Eva", "intent gestartet");
 
         }
     }
@@ -167,6 +169,14 @@ public class TaskListDisplayActivity extends ActionBarActivity {
             return true;
         }
 
+        if (id == R.id.action_add_Mapslocation) {
+
+            Intent addLocationIntent = new Intent(this, LocationCreateActivity.class);
+            boolean taskInfo = false;
+            addLocationIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
+            startActivity(addLocationIntent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
