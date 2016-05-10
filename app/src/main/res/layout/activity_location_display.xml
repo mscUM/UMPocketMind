@@ -15,53 +15,65 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:padding="20dp"/>
+        android:layout_marginLeft="95dp"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        android:padding="0dp"/>
+
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/detailsLabel"
+        android:orientation="vertical"
         android:stretchColumns="1">
 
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
             >
 
             <TextView
                 android:id="@+id/location_name"
                 android:layout_column="0"
                 android:text="Name"
-                android:textSize="16sp"
-
+                android:textSize="20sp"
+                android:textColor="#000000"
                 />
 
             <TextView
                 android:id="@+id/locationName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_column="1"
+                android:textSize="20sp"
                 />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
             >
 
             <TextView
                 android:id="@+id/location_description"
                 android:layout_column="0"
                 android:text="Description"
-                android:textSize="16sp"
+                android:textSize="20sp"
+                android:textColor="#000000"
                 />
 
             <TextView
                 android:id="@+id/locationDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_column="1"
+                android:textSize="20sp"
                 />
         </TableRow>
 

@@ -32,7 +32,9 @@ import de.umpocketmind.R;
 
 public class LocationListDisplayActivity extends AppCompatActivity {
 
+    //create a ArrayAdapter for ListView
     private ArrayAdapter<String> locationArrayAdapter;
+    //call database
     private LocationManager locationManager;
 
     @Override
@@ -61,12 +63,17 @@ public class LocationListDisplayActivity extends AppCompatActivity {
         //locationManager.close();
     }
 
+    //show all location names in a list
     private void showAllLocations(){
+        //get all location
         final List<Location> locationList = locationManager.getAllLocations();
+        //create a array list to store location names
         List<String> locationNames = new ArrayList<>();
+        //get all names of locations
         for (Location location:locationList) {
             locationNames.add(location.getName());
         }
+        //push the list into Adapter
          locationArrayAdapter =
                 new ArrayAdapter<>
                         (
@@ -74,16 +81,20 @@ public class LocationListDisplayActivity extends AppCompatActivity {
                                 android.R.layout.select_dialog_item,
                                 locationNames
                         );
+        //list view layout
         ListView locationListView = (ListView) findViewById(R.id.locationList);
         locationListView.setAdapter(locationArrayAdapter);
+        // create a listener of click event
         locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
           @Override
           public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
-            String locationInfo = (String) adapterView.getItemAtPosition(position);
             Log.i("LLDA", "onItemClick called");
+            //create intent
             Intent locationDetailIntent = new Intent();
             locationDetailIntent.setClass(LocationListDisplayActivity.this, LocationDisplayActivity.class);
+            //transfer data to the second activity
             locationDetailIntent.putExtra("LocationDetail",locationList.get(position) );
+            //start the second activity
             LocationListDisplayActivity.this.startActivity(locationDetailIntent);
           }
         });
@@ -112,7 +123,7 @@ public class LocationListDisplayActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_show_tasks) {
-
+            // create intent and start TaskListDisplayActivity with explicit intent
             Intent showTasksIntent = new Intent(this, TaskListDisplayActivity.class);
             boolean taskInfo = false;
             showTasksIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);

@@ -49,10 +49,13 @@ public class LocationDisplayActivity extends AppCompatActivity {
 
     private void showLocationDetail()
     {
+        //create intent
         Intent locationDetailIntent = getIntent();
+        //receive the data from LocationListDisplayActivity
         Location locationDetail = (Location) locationDetailIntent.getSerializableExtra("LocationDetail");
         String locationName = locationDetail.getName();
         String locationDescription = locationDetail.getDescription();
+        //put data into layout
         TextView locationNameView = (TextView) findViewById(R.id.locationName);
         TextView locationDescriptionView = (TextView) findViewById(R.id.locationDescription);
         locationNameView.setText(locationName);
