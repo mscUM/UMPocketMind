@@ -65,8 +65,6 @@ public class LocationManager {
         values.put(DatabaseConnectorLocations.COLUMN_LOCATIONS_LATITUDE, newLocation.getLatitude());
 
         long insertId = database.insert(DatabaseConnectorLocations.TABLE_LOCATIONS, null, values);
-        String message = "Location inserted into Database. Longtitude: " + newLocation.getLongtitude() + " - Latitude: " + newLocation.getLatitude();
-        Log.i("IMPORTANT", message);
 
         Location location = getLocationById(insertId);
         return location;
@@ -85,8 +83,6 @@ public class LocationManager {
         while(!cursor.isAfterLast()) {
             location = cursorToLocation(cursor);
             locationList.add(location);
-            String message = "Location retrieved into Database. Longtitude: " + location.getLongtitude() + " - Latitude: " + location.getLatitude();
-            Log.i("IMPORTANT", message);
             cursor.moveToNext();
         }
 
@@ -140,8 +136,8 @@ public class LocationManager {
         long id = cursor.getLong(idIndex);
         String name = cursor.getString(idName);
         String description = cursor.getString(idDescription);
-        int longtitude = cursor.getInt(idLongtitude);
-        int latitude = cursor.getInt(idLatitude);
+        double longtitude = cursor.getInt(idLongtitude);
+        double latitude = cursor.getInt(idLatitude);
 
         Location location = new Location(id, name, description, longtitude, latitude);
 
