@@ -107,8 +107,15 @@ public class TaskManager {
 
     public boolean isUserPositionInTaskRange(Task task, double longtitude, double latitude) {
         boolean userPositionIsInTaskRange = false;
+        float[] results = new float[1];
 
-        //Todo: check if at least one location of the task is near enough
+        for (Location location: task.getLocations()) {
+            android.location.Location.distanceBetween(latitude, longtitude, location.getLatitude(), location.getLongtitude(), results);
+            if (results[0] <= task.getRange()) {
+                userPositionIsInTaskRange = true;
+                break;
+            }
+        }
 
         return userPositionIsInTaskRange;
     }
