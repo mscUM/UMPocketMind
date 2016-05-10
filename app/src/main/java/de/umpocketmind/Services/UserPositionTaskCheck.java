@@ -14,6 +14,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -70,6 +72,7 @@ public class UserPositionTaskCheck extends IntentService
             if (mLastLocation != null) {
                 longtitude = mLastLocation.getLongitude();
                 latitude = mLastLocation.getLatitude();
+                Log.v("BACKEND", "LÄUFT");
             }
 
             // Find out if a task is within its range

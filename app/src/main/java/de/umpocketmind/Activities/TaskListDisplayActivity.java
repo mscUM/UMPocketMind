@@ -77,8 +77,28 @@ public class TaskListDisplayActivity extends ActionBarActivity {
 
     private void showAllTasks()
     {
+        /*
+        // Create an instance of GoogleAPIClient
+        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+        // Start connection of GoogleAPIClient
+        mGoogleApiClient.connect();
+
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+            // Get current position of the user
+            Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            if (mLastLocation != null) {
+                longitude = mLastLocation.getLongitude();
+                latitude = mLastLocation.getLatitude();
+            }
+            taskManager.sortTasksByDistance(taskList, longitude, latitude);
+            }
+         */
         List<Task> taskList = taskManager.getAllTasks();
-        Log.i("!!!!!!!!!!!!!!!!!!!!!!!", "--");
         ArrayAdapter<Task> taskArrayAdapter =
                 new ArrayAdapter<>
                         (
