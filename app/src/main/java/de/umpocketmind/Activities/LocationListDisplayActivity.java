@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -86,6 +88,40 @@ public class LocationListDisplayActivity extends AppCompatActivity {
           }
         });
     }//showallLocations
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflating the menu
+        getMenuInflater().inflate(R.menu.menu_for_locationlistdisplay, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Specify what happens in case an action bar item is clicked
+        int id = item.getItemId();
+
+        // Check which option was selected
+        if (id == R.id.action_location_create) {
+            // create intent and start LocationCreateActivity with explicit intent
+            Intent locationcreateIntent = new Intent(this, LocationCreateActivity.class);
+            boolean taskInfo = false;
+            locationcreateIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
+            startActivity(locationcreateIntent);
+            return true;
+        }
+
+        if (id == R.id.action_show_tasks) {
+
+            Intent showTasksIntent = new Intent(this, TaskListDisplayActivity.class);
+            boolean taskInfo = false;
+            showTasksIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
+            startActivity(showTasksIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
 
