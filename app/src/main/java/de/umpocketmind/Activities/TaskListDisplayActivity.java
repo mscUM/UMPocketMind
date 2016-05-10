@@ -17,6 +17,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
+
+import de.umpocketmind.FunctionalityClasses.Location;
+import de.umpocketmind.FunctionalityClasses.LocationManager;
 import de.umpocketmind.FunctionalityClasses.Task;
 import de.umpocketmind.FunctionalityClasses.TaskManager;
 import de.umpocketmind.R;
@@ -31,6 +34,28 @@ public class TaskListDisplayActivity extends ActionBarActivity {
         setContentView(R.layout.activity_task_list_display);
         taskManager = new TaskManager(this);
 
+        //todo: das hier wieder wegnehmen
+        Location locationLondon = new Location(0, "London", "Hi! London here!", -0.070035, 51.5073262);
+        Location locationMannheim = new Location(0, "Mannheim", "Das ist Mannheim", 8.3619924, 49.4999557);
+        Location locationParis = new Location(0, "Paris", "This is Paris", 2.2945071, 48.8582606);
+        LocationManager locationManager = new LocationManager(this);
+        locationManager.open();
+        Location mockLocationLondon = locationManager.createLocation(locationLondon);
+        Location mockLocationMannheim = locationManager.createLocation(locationMannheim);
+        Location mockLocationParis = locationManager.createLocation(locationParis);
+        locationManager.close();
+
+        Task taskHoliday = new Task(0, "Holiday", "Holidayyyyy", 5000);
+        taskHoliday.addLocationToTask(mockLocationLondon);
+        taskHoliday.addLocationToTask(mockLocationParis);
+        Task taskStudy = new Task(0, "Study", "This is to study", 1000);
+        taskStudy.addLocationToTask(mockLocationMannheim);
+        TaskManager taskManager = new TaskManager(this);
+        taskManager.open();
+        taskManager.createTask(taskHoliday);
+        taskManager.createTask(taskStudy);
+        taskManager.close();
+        //todo: endtodo
     }
 
     @Override
