@@ -22,12 +22,12 @@ public class GoogleAPIConnector implements GoogleApiClient.ConnectionCallbacks, 
     private Context context;
 
     public GoogleAPIConnector(Context context) {
+        this.context = context;
         buildGoogleApiClient();
         mGoogleApiClient.connect();
     }
 
     protected synchronized void buildGoogleApiClient() {
-        this.context = context;
         mGoogleApiClient = new GoogleApiClient.Builder(context)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)

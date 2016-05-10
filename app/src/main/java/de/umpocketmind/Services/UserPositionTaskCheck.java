@@ -100,7 +100,7 @@ public class UserPositionTaskCheck extends IntentService {
             }
 
             // Wait some time
-            try { Thread.sleep(30000); } catch (InterruptedException e) { }
+            try { Thread.sleep(10000); } catch (InterruptedException e) { }
         }
 
         if (userShouldBeNotified) {
