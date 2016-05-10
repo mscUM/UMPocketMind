@@ -14,17 +14,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-
 import java.util.ArrayList;
-
 import de.umpocketmind.Activities.TaskListDisplayActivity;
 import de.umpocketmind.FunctionalityClasses.Task;
 import de.umpocketmind.FunctionalityClasses.TaskManager;
@@ -45,7 +40,7 @@ public class UserPositionTaskCheck extends IntentService
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        if (serviceIsCheckingPositions == false) {
+        if (!serviceIsCheckingPositions) {
             serviceIsCheckingPositions = true;
             checkUserPositionTask();
         }
