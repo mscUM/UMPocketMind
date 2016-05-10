@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -26,7 +27,7 @@ import de.umpocketmind.FunctionalityClasses.Task;
 import de.umpocketmind.FunctionalityClasses.TaskManager;
 import de.umpocketmind.R;
 
-public class TaskListDisplayActivity extends AppCompatActivity {
+public class TaskListDisplayActivity extends ActionBarActivity {
     private TaskManager taskManager;
 
     @Override
@@ -48,28 +49,48 @@ public class TaskListDisplayActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        taskManager.close();
     }
 
 
+    private void showAllTasks()
+    {
+        List<Task> taskList = taskManager.getAllTasks();
+        ArrayAdapter<Task> taskArrayAdapter =
+                new ArrayAdapter<>
+                        (
+                                this,
+                                android.R.layout.select_dialog_item,
+                                taskList
+                        );
+        ListView taskListView = (ListView) findViewById(R.id.Listview_TaskList);
+        taskListView.setAdapter(taskArrayAdapter);
+        taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.i("Test", adapterView.getItemAtPosition(position).toString());
+                String taskInfo = (String) adapterView.getItemAtPosition(position).toString();
+                Log.i("LLDA", "onItemClick called");
+                // create intent, start activity with explicit intent
+                //Toast.makeText(TaskListDisplayActivity.this, taskInfo, Toast.LENGTH_SHORT).show();
+                Intent taskDisplayIntent = new Intent();
+                taskDisplayIntent.setClass(TaskListDisplayActivity.this, TaskDisplayActivity.class);
+                //taskDisplayIntent.putExtra("TaskDisplay", taskList.get(position) );
+                taskDisplayIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
+                TaskListDisplayActivity.this.startActivity(taskDisplayIntent);
 
 
+            }
+        });
+    }
+    /*
+    private void showAllTasksOld() {
 
-
-
-
-
-
-
-    private void showAllTasks() {
-        //locationManager.insertMockDataIntoDatabase();
         final List<Task> taskList = taskManager.getAllTasks();
         List<String> taskNames = new ArrayList<>();
         for (Task task : taskList
                 ) {
-            taskNames.add(task.getName());
+            taskNames.add(task.getName() + " " + task.getId());
         }
-        //locationManager.deleteAllLocationsFromDatabase();
         ArrayAdapter<String> taskArrayAdapter =
                 new ArrayAdapter<>
                         (
@@ -83,10 +104,6 @@ public class TaskListDisplayActivity extends AppCompatActivity {
         taskListView.setAdapter(taskArrayAdapter);
 
 
-        //View rootView = null;  // = inflater.inflate(R.layout.activity_task_list_display, container, false);
-
-        //ListView tasklistListView = (ListView) rootView.findViewById(R.id
-        //      .Listview_TaskList);
 
         taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,27 +111,17 @@ public class TaskListDisplayActivity extends AppCompatActivity {
                 String taskInfo = (String) adapterView.getItemAtPosition(position);
                 Log.i("LLDA", "onItemClick called");
                 // create intent, start activity with explicit intent
-
-
-                // Andy's Intent for location
-                //Intent locationDetailIntent = new Intent();
-                //locationDetailIntent.setClass(LocationListDisplayActivity.this, LocationDisplayActivity.class);
-                //locationDetailIntent.putExtra("LocationDetail",locationList.get(position) );
-                //LocationListDisplayActivity.this.startActivity(locationDetailIntent);
-
+                //Toast.makeText(TaskListDisplayActivity.this, taskInfo, Toast.LENGTH_SHORT).show();
                 Intent taskDisplayIntent = new Intent();
                 taskDisplayIntent.setClass(TaskListDisplayActivity.this, TaskDisplayActivity.class);
-                taskDisplayIntent.putExtra("TaskDisplay", taskList.get(position) );
+                //taskDisplayIntent.putExtra("TaskDisplay", taskList.get(position) );
+                taskDisplayIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
                 TaskListDisplayActivity.this.startActivity(taskDisplayIntent);
 
-                //old intent
-                /*Intent taskdetailIntent = new Intent(TaskListDisplayActivity.this, TaskDisplayActivity.class);
-                taskdetailIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
-                startActivity(taskdetailIntent);*/
 
             }
         });
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,18 +134,14 @@ public class TaskListDisplayActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Specify what happens in case an action bar item is clicked
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        // Check whether option was selected
+        // Check which option was selected
         if (id == R.id.action_task_create) {
             // create intent and start TaskCreateActivity with explicit intent
             Intent taskcreateIntent = new Intent(this, TaskCreateActivity.class);
             boolean taskInfo = false;
             taskcreateIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
             startActivity(taskcreateIntent);
-
             return true;
         }
 
@@ -148,7 +151,6 @@ public class TaskListDisplayActivity extends AppCompatActivity {
             boolean taskInfo = false;
             showLocationsIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
             startActivity(showLocationsIntent);
-
             return true;
         }
 
@@ -158,10 +160,12 @@ public class TaskListDisplayActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        //taskManager.open();
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        //taskManager.close();
     }
 }

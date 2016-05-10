@@ -5,8 +5,8 @@
 
     <string name="hello_world">Show me the details of the task!</string>
     <string name="action_settings">Settings</string>
-    <string name="action_task_create">Create task</string>
-    <string name="action_task_display">Display task</string>
-    <string name="title_activity_taskdisplay">Display task</string>
-    <string name="title_activity_taskcreate">Create task</string>
+    <string name="action_task_create">Create Task</string>
+    <string name="action_task_display">Display Task</string>
+    <string name="title_activity_taskdisplay">Display Task</string>
+    <string name="title_activity_taskcreate">Create Task</string>
 </resources>

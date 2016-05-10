@@ -38,25 +38,25 @@ public class LocationListDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list_display);
         locationManager = new LocationManager(this);
-        locationManager.open();
-        showAllLocations();
-        locationManager.close();
+        //locationManager.open();
+        //showAllLocations();
+        //locationManager.close();
     }
 
     @Override
     protected void onResume()
     {
         super.onResume();
-        //locationManager.open();
-        ///showAllLocations();
-        //locationManager.close();
+        locationManager.open();
+        showAllLocations();
+        locationManager.close();
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-        locationManager.close();
+        //locationManager.close();
     }
 
     private void showAllLocations(){

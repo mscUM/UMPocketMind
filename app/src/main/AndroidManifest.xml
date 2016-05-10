@@ -36,7 +36,8 @@
             android:name=".Activities.LocationCreateActivity"
             android:label="@string/title_activity_location_create" />
         <activity android:name=".Activities.LocationListDisplayActivity" />
-        <activity android:name=".Activities.LocationDisplayActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+        <activity android:name=".Activities.LocationDisplayActivity"></activity>
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"
@@ -44,11 +45,11 @@
     </application>
 
 
-
+    <!-->
 
         // declare TaskListDisplayActivity
         <activity
-            android:name=".TaskListDisplayActivity"
+            android:name="TaskListDisplayActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,8 +79,6 @@
 
         </activity>
 
-
-
-
+    <-->
 
 </manifest>

@@ -44,7 +44,7 @@ public class LocationDisplayActivity extends AppCompatActivity {
     protected void onPause()
     {
         super.onPause();
-        locationManager.close();
+        //locationManager.close();
     }
 
     private void showLocationDetail()

@@ -60,4 +60,10 @@ public class Task implements Serializable {
         locations.add(location);
         Log.i("Task", "Task-Object-Location added:" + location);
     }
+
+    @Override
+    public String toString()
+    {
+        return this.id + ", " + this.name + ", " + this.description + ", " + this.range;
+    }
 }
