@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import de.umpocketmind.FunctionalityClasses.Location;
 import de.umpocketmind.FunctionalityClasses.Task;
 import de.umpocketmind.R;
@@ -18,6 +20,7 @@ import de.umpocketmind.R;
 public class TaskDisplayActivity extends AppCompatActivity{
 
     private Task currentTask;
+    private ArrayList<Location> taskLocations = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +36,16 @@ public class TaskDisplayActivity extends AppCompatActivity{
 
 
     public void showTasksOnMap(View v){
-        String allLocation = "";
-        allLocation = "" + currentTask;
 
-        Toast.makeText(this, allLocation, Toast.LENGTH_SHORT).show();
-        /*
-        array vom typ Location weitergeben
+
+        Toast.makeText(this, taskLocations.toString(), Toast.LENGTH_SHORT).show();
+
+
         Intent taskShowLocIntent = new Intent();
         taskShowLocIntent.setClass(TaskDisplayActivity.this, TaskMapDisplayActivity.class);
-        taskShowLocIntent.putExtra("showLocations", TaskLocations);
+        taskShowLocIntent.putExtra("allLocations", taskLocations);
         TaskDisplayActivity.this.startActivity(taskShowLocIntent);
-        */
+
     }
 
 
@@ -56,7 +58,9 @@ public class TaskDisplayActivity extends AppCompatActivity{
             //Toast.makeText(this, receivedIntent.getExtras().toString(), Toast.LENGTH_SHORT).show();
             currentTask = (Task) receivedIntent.getSerializableExtra("currentTask");
             //Log.i("getExtras", receivedIntent.getExtras().toString());
-
+            //taskLocations = currentTask.getLocations();
+            Location dummyLocation = new Location(0, "LearningCenter", "LC UNI", 8.461785999999961, 49.4829556);
+            taskLocations.add(dummyLocation);
             TextView taskNameTextView = (TextView) findViewById(R.id.taskDetail_name);
             TextView taskDescTextView = (TextView) findViewById(R.id.taskDetail_description);
             TextView taskRangeTextView = (TextView) findViewById(R.id.taskDetail_range);
