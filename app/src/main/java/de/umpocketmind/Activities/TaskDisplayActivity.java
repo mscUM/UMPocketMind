@@ -38,7 +38,7 @@ public class TaskDisplayActivity extends AppCompatActivity{
     public void showTasksOnMap(View v){
 
 
-        Toast.makeText(this, taskLocations.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, taskLocations.toString(), Toast.LENGTH_SHORT).show();
 
 
         Intent taskShowLocIntent = new Intent();

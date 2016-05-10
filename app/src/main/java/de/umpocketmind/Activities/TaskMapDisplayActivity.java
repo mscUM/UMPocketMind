@@ -30,15 +30,7 @@ public class TaskMapDisplayActivity extends FragmentActivity implements OnMapRea
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        Intent receivedIntent = getIntent();
-        Log.i("§§§§§§§", receivedIntent.toString());
-        if (receivedIntent != null && receivedIntent.hasExtra("allLocations")){
-            receivedLocations = (ArrayList<Location>)receivedIntent.getSerializableExtra("allLoactions");
 
-            String ausgabe;
-            //for (Location )
-            //Log.i("&&",ausgabe);
-        }
 
     }
 
@@ -47,10 +39,22 @@ public class TaskMapDisplayActivity extends FragmentActivity implements OnMapRea
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        Intent receivedIntent = getIntent();
+        Log.i("§§§§§§§", receivedIntent.toString());
+        if (receivedIntent != null && receivedIntent.hasExtra("allLocations")){
+            receivedLocations = (ArrayList<Location>)receivedIntent.getSerializableExtra("allLocations");
+
+            for (Location l: receivedLocations) {
+                Log.i("§§§§§§§§", l.toString());
+                LatLng latLng = new LatLng(l.getLatitude(), l.getLongtitude());
+                mMap.addMarker(new MarkerOptions().position(latLng).title(l.getName()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            }
+        }
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //LatLng sydney = new LatLng(-34, 151);
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
 

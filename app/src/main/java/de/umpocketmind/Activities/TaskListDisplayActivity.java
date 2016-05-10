@@ -169,6 +169,7 @@ public class TaskListDisplayActivity extends ActionBarActivity {
             return true;
         }
 
+        /*
         if (id == R.id.action_add_Mapslocation) {
 
             Intent addLocationIntent = new Intent(this, LocationCreateActivity.class);
@@ -177,7 +178,7 @@ public class TaskListDisplayActivity extends ActionBarActivity {
             startActivity(addLocationIntent);
             return true;
         }
-
+           */
         return super.onOptionsItemSelected(item);
     }
 
