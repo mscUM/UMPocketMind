@@ -12,6 +12,8 @@ import android.util.Log;
  */
 public class TaskManager {
 
+    private Context context;
+
     private SQLiteDatabase taskDatabase;
     private DatabaseConnectorTasks databaseConnectorTasks;
     private String[] taskColumns = {
@@ -24,16 +26,36 @@ public class TaskManager {
 
     private Task mockTaskBuyIceCream;
     private Task mockTaskVisitSidney;
+    private Location mockLocationForIceCreamParadeplatz;
+    private Location mockLocationForIceCreamWasserturm;
+    private Location mockLocationForVisitSidney;
 
     private void insertMockTasksIntoDatabase() {
+        // Add Mock Locations
+        //LocationManager locationManager = new LocationManager(context);
+        //locationManager.open();
+        Location locationForIceCreamParadeplatz = new Location(0, "ParadeplatzFürTask", "Paradeplatz für Task", 8.4660542, 49.4874131);
+        Location locationForIceCreamWasserturm = new Location(0, "WasserturmFürTask", "Wasserturm für Task", 8.4733678, 49.4840612);
+        Location locationForVisitSidney = new Location(0, "SidneyFürTask", "Sidney für Task", 151.2069902, -33.8674869);
+        mockLocationForIceCreamParadeplatz = taskLocationsManager.locationManager.createLocation(locationForIceCreamParadeplatz);
+        mockLocationForIceCreamWasserturm = taskLocationsManager.locationManager.createLocation(locationForIceCreamWasserturm);
+        mockLocationForVisitSidney = taskLocationsManager.locationManager.createLocation(locationForVisitSidney);
+        //locationManager.close();
+        // Add Mock Tasks
         Task buyIceCream = new Task(0, "Ice Cream", "Buy some ice cream", 500);
+        buyIceCream.addLocationToTask(mockLocationForIceCreamParadeplatz);
+        buyIceCream.addLocationToTask(mockLocationForIceCreamWasserturm);
         mockTaskBuyIceCream = createTask(buyIceCream);
         Task visitSidney = new Task(0, "Visit Sidney", "Visit the awesome city of Sidney", 5000);
+        visitSidney.addLocationToTask(mockLocationForVisitSidney);
         mockTaskVisitSidney = createTask(visitSidney);
         Log.i("LocationMgr", "Mock tasks added to database.");
     }
 
     private void deleteMockTasksFromDatabase() {
+        taskLocationsManager.locationManager.deleteLocationById(mockLocationForIceCreamParadeplatz.getId());
+        taskLocationsManager.locationManager.deleteLocationById(mockLocationForIceCreamWasserturm.getId());
+        taskLocationsManager.locationManager.deleteLocationById(mockLocationForVisitSidney.getId());
         deleteTaskById(mockTaskBuyIceCream.getId());
         deleteTaskById(mockTaskVisitSidney.getId());
         Log.i("LocationMgr", "Mock tasks deleted from database.");
@@ -41,6 +63,7 @@ public class TaskManager {
 
 
     public TaskManager(Context context) {
+        this.context = context;
         databaseConnectorTasks = new DatabaseConnectorTasks(context);
         taskLocationsManager = new TaskLocationsManager(context);
         Log.i("TaskMgr", "TaskManager created.");

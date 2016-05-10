@@ -19,7 +19,7 @@ public class TaskLocationsManager {
             DatabaseConnectorTaskLocations.COLUMN_TASKLOCATIONS_TASKID,
             DatabaseConnectorTaskLocations.COLUMN_TASKLOCATIONS_LOCATIONID,
     };
-    private LocationManager locationManager;
+    protected LocationManager locationManager;
 
 
     protected TaskLocationsManager(Context context) {
