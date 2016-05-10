@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="de.umpocketmind.Activities.LocationListDisplayActivity">
 
+    <!--Create a list view for all task-->
     <ListView
         android:id="@+id/locationList"
         android:text="Location List"
