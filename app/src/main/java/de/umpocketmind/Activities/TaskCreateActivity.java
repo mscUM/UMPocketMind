@@ -29,8 +29,8 @@ import de.umpocketmind.FunctionalityClasses.TaskManager;
 import de.umpocketmind.R;
 import android.widget.AbsListView;
 
-
-public class TaskCreateActivity extends AppCompatActivity{
+//
+public class TaskCreateActivity extends AppCompatActivity{// implements View.OnClickListener{
 
     private TaskManager taskManager;
     private LocationManager locationManager;
@@ -89,6 +89,31 @@ public class TaskCreateActivity extends AppCompatActivity{
     {
 
         Toast.makeText(this, "Add to task geclickt", Toast.LENGTH_SHORT).show();
+
+        Log.i("onClick View", "aufgerufen1");
+        ListView taskLocationListView = (ListView) findViewById(R.id.taskCreate_ListViewTaskLocations);
+        Log.i("onClick View", "aufgerufen2");
+        SparseBooleanArray checked = taskLocationListView.getCheckedItemPositions();
+        Log.i("onClick View", "aufgerufen3");
+        ArrayList<String> selectedItems = new ArrayList<String>();
+        Log.i("onClick View", "aufgerufen4");
+        for (int i = 0; i < checked.size(); i++) {
+            // Item position in adapter
+            int position = checked.keyAt(i);
+            Log.i("onClick View", "for: " + i + "");
+            // Add location if it is checked i.e.) == TRUE!
+            if (checked.valueAt(i))
+                //selectedItems.add(adapter.getItem(position));
+            Log.i("onClick View", "aufgerufen - check");
+        }
+
+        String[] outputStrArr = new String[selectedItems.size()];
+        Log.i("onClick View", "aufgerufen - final");
+        for (int i = 0; i < selectedItems.size(); i++) {
+            outputStrArr[i] = selectedItems.get(i);
+            Log.i("=====", outputStrArr[i].toString());
+        }
+        /*
         EditText taskNameEditText = (EditText) findViewById(R.id.taskCreate_EditTextName);
         EditText taskDescEditText = (EditText) findViewById(R.id.taskCreate_EditTextDesc);
         EditText taskRangeEditText = (EditText) findViewById(R.id.taskCreate_EditTextRange);
@@ -109,8 +134,30 @@ public class TaskCreateActivity extends AppCompatActivity{
         taskNameEditText.setText("");
         taskDescEditText.setText("");
         taskRangeEditText.setText("");
-
+        */
 
     }
+/*
+    @Override
+    public void onClick(View v) {
+        Log.i("onClick View", "aufgerufen");
+        ListView taskLocationListView = (ListView) findViewById(R.id.taskCreate_ListViewTaskLocations);
+        SparseBooleanArray checked = taskLocationListView.getCheckedItemPositions();
+        ArrayList<String> selectedItems = new ArrayList<String>();
+        for (int i = 0; i < checked.size(); i++) {
+            // Item position in adapter
+            int position = checked.keyAt(i);
+            // Add location if it is checked i.e.) == TRUE!
+            if (checked.valueAt(i))
+                selectedItems.add(adapter.getItem(position));
+        }
 
+        String[] outputStrArr = new String[selectedItems.size()];
+
+        for (int i = 0; i < selectedItems.size(); i++) {
+            outputStrArr[i] = selectedItems.get(i);
+            Log.i("=====", outputStrArr[i].toString());
+        }
+    }
+*/
 }//main

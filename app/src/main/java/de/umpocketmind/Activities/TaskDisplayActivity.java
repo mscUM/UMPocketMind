@@ -84,6 +84,7 @@ public class TaskDisplayActivity extends AppCompatActivity{
             taskNameTextView.setText(currentTask.getName().toString());
             taskDescTextView.setText(currentTask.getDescription().toString());
             taskRangeTextView.setText(currentTask.getRange() + "");
+            //final List<Location>
             taskLocationTextView.setText((currentTask.getLocations())+ "");
         }
     }

@@ -16,8 +16,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import de.umpocketmind.FunctionalityClasses.GoogleAPIConnector;
 import de.umpocketmind.FunctionalityClasses.Location;
 import de.umpocketmind.FunctionalityClasses.LocationManager;
 import de.umpocketmind.FunctionalityClasses.Task;
@@ -63,22 +65,21 @@ public class TaskListDisplayActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        taskManager.open();
-        showAllTasks();
-        taskManager.close();
         // Check if user permitted to retrieve their location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             String[] myPermissions = {"ACCESS_FINE_LOCATION"};
             ActivityCompat.requestPermissions(this, myPermissions, 1);
-            Log.i("Eva", "permission denied");
 
         }else{
             Intent i = new Intent(this, UserPositionTaskCheck.class);
             startService(i);
-            Log.i("Eva", "intent gestartet");
 
         }
+        taskManager.open();
+        showAllTasks();
+        taskManager.close();
+
     }
 
     @Override
@@ -107,27 +108,23 @@ public class TaskListDisplayActivity extends ActionBarActivity {
     private void showAllTasks()
     {
         /*
-        // Create an instance of GoogleAPIClient
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        // Start connection of GoogleAPIClient
-        mGoogleApiClient.connect();
-
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-            // Get current position of the user
-            Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            if (mLastLocation != null) {
-                longitude = mLastLocation.getLongitude();
-                latitude = mLastLocation.getLatitude();
+        GoogleAPIConnector googleAPIConnector = new GoogleAPIConnector(this);
+        android.location.Location currentUserPosition;
+        while(true){
+            currentUserPosition = googleAPIConnector.getCurrentUserPosition();
+            if(currentUserPosition != null){
+                Log.i("LOCATION", "nicht mehr null");
+                break;
             }
-            taskManager.sortTasksByDistance(taskList, longitude, latitude);
-            }
-         */
-        List<Task> taskList = taskManager.getAllTasks();
+            Log.i("LOCATION", "still null");
+            try { Thread.sleep(5000); } catch (InterruptedException e) { }
+        }
+        //android.location.Location currentUserPosition = googleAPIConnector.getCurrentUserPosition();
+        double currentLongitude = currentUserPosition.getLongitude();
+        double currentLatitude = currentUserPosition.getLatitude();
+        */
+        ArrayList<Task> taskList = taskManager.getAllTasks();
+        //taskList = taskManager.sortTasksByDistance(taskList, currentLongitude, currentLatitude);
         ArrayAdapter<Task> taskArrayAdapter =
                 new ArrayAdapter<>
                         (
@@ -141,10 +138,8 @@ public class TaskListDisplayActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Log.i("Test", adapterView.getItemAtPosition(position).toString());
-                //String taskInfo = (String) adapterView.getItemAtPosition(position).toString();
                 Task currentTask = (Task) adapterView.getItemAtPosition(position);
                 Log.i("LLDA", "onItemClick called");
-                // create intent, start activity with explicit intent
                 Intent taskDisplayIntent = new Intent();
                 taskDisplayIntent.setClass(TaskListDisplayActivity.this, TaskDisplayActivity.class);
                 taskDisplayIntent.putExtra("currentTask", currentTask);

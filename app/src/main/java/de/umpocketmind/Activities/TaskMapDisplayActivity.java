@@ -51,31 +51,6 @@ public class TaskMapDisplayActivity extends FragmentActivity implements OnMapRea
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             }
         }
-        // Add a marker in Sydney and move the camera
-        //LatLng sydney = new LatLng(-34, 151);
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
 }
-
-/*
-// Create an instance of GoogleAPIClient
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        // Start connection of GoogleAPIClient
-        mGoogleApiClient.connect();
-
-        while(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-            // Get current position of the user
-            Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
-            if (mLastLocation != null) {
-                longtitude = mLastLocation.getLongitude();
-                latitude = mLastLocation.getLatitude();
-                Log.v("BACKEND", "LÄUFT");
-            }
- */
