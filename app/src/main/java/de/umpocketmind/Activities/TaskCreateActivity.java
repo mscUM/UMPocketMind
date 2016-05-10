@@ -33,6 +33,7 @@ public class TaskCreateActivity extends AppCompatActivity{
 
     private TaskManager taskManager;
     private LocationManager locationManager;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,22 @@ public class TaskCreateActivity extends AppCompatActivity{
 
         taskManager.open();
         taskManager.close();
+
+        SparseBooleanArray checked = ListView.getCheckedItemPositions();
+        ArrayList<String> selectedItems = new ArrayList<String>();
+        for (int i = 0; i < checked.size(); i++) {
+            // Item position in adapter
+            int position = checked.keyAt(i);
+            // Add sport if it is checked i.e.) == TRUE!
+            if (checked.valueAt(i))
+                selectedItems.add(adapter.getItem(position));
+        }
+
+        String[] outputStrArr = new String[selectedItems.size()];
+
+        for (int i = 0; i < selectedItems.size(); i++) {
+            outputStrArr[i] = selectedItems.get(i);
+        }
     }
 /*
                 String stringName = editTextName.getText().toString();
