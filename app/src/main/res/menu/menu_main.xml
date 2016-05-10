@@ -18,4 +18,9 @@ tools:context=".TaskListDisplayActivity">
         android:orderInCategory="100"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_add_location"
+        android:title="Add Locations"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>

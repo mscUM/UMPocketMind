@@ -104,6 +104,16 @@ public class TaskListDisplayActivity extends ActionBarActivity {
             return true;
         }
 
+        if (id == R.id.action_add_location) {
+
+            Intent addLocationIntent = new Intent(this, LocationCreateActivityTest.class);
+            boolean taskInfo = false;
+            addLocationIntent.putExtra(Intent.EXTRA_TEXT, taskInfo);
+            startActivity(addLocationIntent);
+            return true;
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 
