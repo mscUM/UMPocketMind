@@ -44,6 +44,7 @@ public class TaskListDisplayActivity extends ActionBarActivity {
     private void showAllTasks()
     {
         List<Task> taskList = taskManager.getAllTasks();
+        Log.i("!!!!!!!!!!!!!!!!!!!!!!!", "--");
         ArrayAdapter<Task> taskArrayAdapter =
                 new ArrayAdapter<>
                         (

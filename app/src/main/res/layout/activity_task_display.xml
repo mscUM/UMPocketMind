@@ -40,5 +40,6 @@ Button Show Locations on Map
         android:layout_height="wrap_content"
         android:id="@+id/taskDetail_ButtonShowOnMap"
         android:text="Show Task on Map"
-        android:layout_below="@id/taskDetail_range"/>
+        android:layout_below="@id/taskDetail_range"
+        android:onClick="showTasksOnMap" />
 </RelativeLayout>
