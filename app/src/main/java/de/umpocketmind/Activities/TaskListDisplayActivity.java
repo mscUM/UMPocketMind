@@ -51,14 +51,14 @@ public class TaskListDisplayActivity extends ActionBarActivity {
         ArrayList<Location> testAllLocation = locationManager.getAllLocations();
         Log.i("$$", testAllLocation.toString());
         Location testLocation = locationManager.getLocationById(1);
-        Log.i("§§§§§§§§§§", testLocation.toString());
+        Log.i("§§§§§§§§§§1", testLocation.toString());
 
         locationManager.close();
 
         Task taskHoliday = new Task(0, "Holiday", "Holidayyyyy", 5000);
         taskHoliday.addLocationToTask(mockLocationLondon);
         taskHoliday.addLocationToTask(mockLocationParis);
-        Log.i("§§§§§§§§§§", taskHoliday.toString());
+        Log.i("§§§§§§§§§§2", taskHoliday.toString());
         Task taskStudy = new Task(0, "Study", "This is to study", 1000);
         taskStudy.addLocationToTask(mockLocationMannheim);
         TaskManager taskManager = new TaskManager(this);
