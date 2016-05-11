@@ -57,7 +57,7 @@ public class TaskLocationsManager {
 
         cursor.moveToFirst();
 
-        Log.i("TESTTESTTEST", "Jetzt sind wir vor dem while.");
+        Log.i("TESTTESTTEST", "Jetzt sind wir vor dem while. TastID: " +task.getId());
         while(!cursor.isAfterLast()) {
             Log.i("TESTTESTTEST", "Jetzt sind wir in dem while.");
             locationList.add(cursorToTaskLocation(cursor));
