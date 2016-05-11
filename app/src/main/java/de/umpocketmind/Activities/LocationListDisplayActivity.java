@@ -2,9 +2,7 @@
 
 package de.umpocketmind.Activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,28 +10,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.database.Cursor;
-import android.widget.SimpleAdapter;
-import android.widget.SimpleCursorAdapter;
-import android.util.Log;
-import android.widget.Toast;
-
-import org.xml.sax.helpers.LocatorImpl;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import de.umpocketmind.FunctionalityClasses.DatabaseConnectorLocations;
 import de.umpocketmind.FunctionalityClasses.Location;
 import de.umpocketmind.FunctionalityClasses.LocationManager;
 import de.umpocketmind.R;
 
+
+
+
 public class LocationListDisplayActivity extends AppCompatActivity {
 
-    //create a ArrayAdapter for ListView
-    private ArrayAdapter<String> locationArrayAdapter;
     //call database
     private LocationManager locationManager;
 
@@ -60,7 +48,6 @@ public class LocationListDisplayActivity extends AppCompatActivity {
     protected void onPause()
     {
         super.onPause();
-        //locationManager.close();
     }
 
     //show all location names in a list
@@ -74,13 +61,12 @@ public class LocationListDisplayActivity extends AppCompatActivity {
             locationNames.add(location.getName());
         }
         //push the list into Adapter
-         locationArrayAdapter =
-                new ArrayAdapter<>
-                        (
-                                this,
-                                android.R.layout.select_dialog_item,
-                                locationNames
-                        );
+        ArrayAdapter<String> locationArrayAdapter = new ArrayAdapter<>
+                (
+                        this,
+                        android.R.layout.select_dialog_item,
+                        locationNames
+                );
         //list view layout
         ListView locationListView = (ListView) findViewById(R.id.locationList);
         locationListView.setAdapter(locationArrayAdapter);
@@ -88,7 +74,6 @@ public class LocationListDisplayActivity extends AppCompatActivity {
         locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
           @Override
           public void onItemClick(AdapterView<?> adapterView, View view, int position, long id){
-            Log.i("LLDA", "onItemClick called");
             //create intent
             Intent locationDetailIntent = new Intent();
             locationDetailIntent.setClass(LocationListDisplayActivity.this, LocationDisplayActivity.class);

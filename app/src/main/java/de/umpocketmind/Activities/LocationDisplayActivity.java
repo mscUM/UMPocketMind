@@ -5,15 +5,7 @@ package de.umpocketmind.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import de.umpocketmind.FunctionalityClasses.Location;
 import de.umpocketmind.FunctionalityClasses.LocationManager;
 import de.umpocketmind.R;
@@ -44,7 +36,6 @@ public class LocationDisplayActivity extends AppCompatActivity {
     protected void onPause()
     {
         super.onPause();
-        //locationManager.close();
     }
 
     private void showLocationDetail()
