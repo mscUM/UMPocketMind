@@ -100,6 +100,10 @@ public class TaskLocationsManager {
 
         long locationId = cursor.getLong(locationIdIndex);
 
-        return locationManager.getLocationById(locationId);
+        Location location = locationManager.getLocationById(locationId);
+        Log.i("TESTTESTTEST", "ID: " + locationId);
+        Log.i("TESTTESTTEST", "Location: " + location);
+
+        return location;
     }
 }

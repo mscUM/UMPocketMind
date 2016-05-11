@@ -119,8 +119,6 @@ public class LocationManager {
         double longtitude = cursor.getDouble(idLongtitude);
         double latitude = cursor.getDouble(idLatitude);
 
-        Location location = new Location(id, name, description, longtitude, latitude);
-
-        return location;
+        return new Location(id, name, description, longtitude, latitude);
     }
 }
