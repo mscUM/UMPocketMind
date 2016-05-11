@@ -68,7 +68,9 @@ public class TaskLocationsManager {
         cursor.close();
         Log.i("TaskLocationsMgr", "All TaskLocations fetched from Database for Task.");
 
+        Log.i("TaskLocationMgr", locationList.toString());
         return locationList;
+
     }
 
     protected void deleteAllTaskLocationsForTask(Task task) {

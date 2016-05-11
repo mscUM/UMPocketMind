@@ -56,7 +56,9 @@ public class TaskListDisplayActivity extends ActionBarActivity {
         TaskManager taskManager = new TaskManager(this);
         taskManager.open();
         taskManager.createTask(taskHoliday);
+        Log.i("taskHoliday", taskHoliday.toString());
         taskManager.createTask(taskStudy);
+        Log.i("taskStudy", taskStudy.toString());
         taskManager.close();
 
         //todo: endtodo
@@ -124,6 +126,7 @@ public class TaskListDisplayActivity extends ActionBarActivity {
         double currentLatitude = currentUserPosition.getLatitude();
         */
         ArrayList<Task> taskList = taskManager.getAllTasks();
+        Log.i("GETALLTASKS", taskManager.getAllTasks().toString());
         //taskList = taskManager.sortTasksByDistance(taskList, currentLongitude, currentLatitude);
         ArrayAdapter<Task> taskArrayAdapter =
                 new ArrayAdapter<>

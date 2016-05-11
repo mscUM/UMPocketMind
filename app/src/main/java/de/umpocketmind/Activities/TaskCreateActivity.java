@@ -34,8 +34,9 @@ public class TaskCreateActivity extends AppCompatActivity{// implements View.OnC
 
     private TaskManager taskManager;
     private LocationManager locationManager;
-    ArrayAdapter<String> adapter;
     private ArrayList<Location> taskLocations = new ArrayList<>();
+    private ArrayAdapter<Location> taskArrayAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class TaskCreateActivity extends AppCompatActivity{// implements View.OnC
         locationManager.open();
 
         final List<Location> taskLocationList = locationManager.getAllLocations();
-        ArrayAdapter<Location> taskArrayAdapter =
+        taskArrayAdapter =
                 new ArrayAdapter<>
                         (
                                 this,
@@ -73,12 +74,15 @@ public class TaskCreateActivity extends AppCompatActivity{// implements View.OnC
         //taskLocationListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         taskLocationListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         Log.i("ich bin hier", "ich bin hier");
+        /*
         taskLocationListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
             }
         });
+           */
 
 
 
@@ -95,25 +99,20 @@ public class TaskCreateActivity extends AppCompatActivity{// implements View.OnC
         Log.i("onClick View", "aufgerufen2");
         SparseBooleanArray checked = taskLocationListView.getCheckedItemPositions();
         Log.i("onClick View", "aufgerufen3");
-        ArrayList<String> selectedItems = new ArrayList<String>();
+        ArrayList<Location> selectedItems = new ArrayList<Location>();
         Log.i("onClick View", "aufgerufen4");
         for (int i = 0; i < checked.size(); i++) {
             // Item position in adapter
             int position = checked.keyAt(i);
+            Log.i("onClick View position", position + "");
             Log.i("onClick View", "for: " + i + "");
             // Add location if it is checked i.e.) == TRUE!
             if (checked.valueAt(i))
-                //selectedItems.add(adapter.getItem(position));
+                selectedItems.add(taskArrayAdapter.getItem(position));
             Log.i("onClick View", "aufgerufen - check");
         }
 
-        String[] outputStrArr = new String[selectedItems.size()];
-        Log.i("onClick View", "aufgerufen - final");
-        for (int i = 0; i < selectedItems.size(); i++) {
-            outputStrArr[i] = selectedItems.get(i);
-            Log.i("=====", outputStrArr[i].toString());
-        }
-        /*
+
         EditText taskNameEditText = (EditText) findViewById(R.id.taskCreate_EditTextName);
         EditText taskDescEditText = (EditText) findViewById(R.id.taskCreate_EditTextDesc);
         EditText taskRangeEditText = (EditText) findViewById(R.id.taskCreate_EditTextRange);
@@ -122,42 +121,40 @@ public class TaskCreateActivity extends AppCompatActivity{// implements View.OnC
         String taskDesc = taskDescEditText.getText().toString();
         double taskRange = Double.valueOf(taskRangeEditText.getText().toString());
 
+
         Task addTask = new Task(0, taskName, taskDesc, taskRange);
+
+        ArrayList<Location> selectedTaskLocations = new ArrayList<Location>();
+        String[] outputStrArr = new String[selectedItems.size()];
+
+        Log.i("onClick View", "aufgerufen - final");
+        for (int i = 0; i < selectedItems.size(); i++) {
+            outputStrArr[i] = selectedItems.get(i).toString();
+            Log.i("=====", outputStrArr[i].toString());
+            selectedTaskLocations.add(selectedItems.get(i));
+
+
+            addTask.addLocationToTask(selectedItems.get(i));
+
+        }
+        Log.i("onClick View", selectedTaskLocations.toString());
+
         //Location locationToAdd = new Location(0, );
         //addTask.addLocationToTask(locationToAdd);
 
+        Log.i("onClick View", addTask.toString());
         taskManager.open();
         taskManager.createTask(addTask);
         taskManager.close();
 
         Toast.makeText(this, "Task added", Toast.LENGTH_SHORT).show();
+
         taskNameEditText.setText("");
         taskDescEditText.setText("");
         taskRangeEditText.setText("");
-        */
+
 
     }
-/*
-    @Override
-    public void onClick(View v) {
-        Log.i("onClick View", "aufgerufen");
-        ListView taskLocationListView = (ListView) findViewById(R.id.taskCreate_ListViewTaskLocations);
-        SparseBooleanArray checked = taskLocationListView.getCheckedItemPositions();
-        ArrayList<String> selectedItems = new ArrayList<String>();
-        for (int i = 0; i < checked.size(); i++) {
-            // Item position in adapter
-            int position = checked.keyAt(i);
-            // Add location if it is checked i.e.) == TRUE!
-            if (checked.valueAt(i))
-                selectedItems.add(adapter.getItem(position));
-        }
 
-        String[] outputStrArr = new String[selectedItems.size()];
 
-        for (int i = 0; i < selectedItems.size(); i++) {
-            outputStrArr[i] = selectedItems.get(i);
-            Log.i("=====", outputStrArr[i].toString());
-        }
-    }
-*/
 }//main
