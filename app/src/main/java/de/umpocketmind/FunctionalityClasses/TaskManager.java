@@ -69,13 +69,6 @@ public class TaskManager {
 
         while(!cursor.isAfterLast()) {
             task = cursorToTask(cursor);
-
-            //Add locations to that task
-            ArrayList<Location> taskLocationList = taskLocationsManager.getAllTaskLocationsForTask(task);
-            for (Location taskLocation: taskLocationList) {
-                task.addLocationToTask(taskLocation);
-            }
-
             taskList.add(task);
             Log.i("2############", task.toString());
             cursor.moveToNext();
