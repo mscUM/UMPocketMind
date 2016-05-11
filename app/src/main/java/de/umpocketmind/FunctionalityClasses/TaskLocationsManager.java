@@ -57,11 +57,8 @@ public class TaskLocationsManager {
 
         cursor.moveToFirst();
 
-        Location location;
-
         while(!cursor.isAfterLast()) {
-            location = cursorToTaskLocation(cursor);
-            locationList.add(location);
+            locationList.add(cursorToTaskLocation(cursor));
             cursor.moveToNext();
         }
 
