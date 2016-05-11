@@ -57,7 +57,9 @@ public class TaskLocationsManager {
 
         cursor.moveToFirst();
 
+        Log.i("TESTTESTTEST", "Jetzt sind wir vor dem while.");
         while(!cursor.isAfterLast()) {
+            Log.i("TESTTESTTEST", "Jetzt sind wir in dem while.");
             locationList.add(cursorToTaskLocation(cursor));
             cursor.moveToNext();
         }
