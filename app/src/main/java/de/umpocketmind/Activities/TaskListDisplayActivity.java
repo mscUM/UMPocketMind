@@ -23,6 +23,7 @@ import de.umpocketmind.FunctionalityClasses.GoogleAPIConnector;
 import de.umpocketmind.FunctionalityClasses.Location;
 import de.umpocketmind.FunctionalityClasses.LocationManager;
 import de.umpocketmind.FunctionalityClasses.Task;
+import de.umpocketmind.FunctionalityClasses.TaskLocationsManager;
 import de.umpocketmind.FunctionalityClasses.TaskManager;
 import de.umpocketmind.R;
 import de.umpocketmind.Services.UserPositionTaskCheck;
@@ -46,20 +47,31 @@ public class TaskListDisplayActivity extends ActionBarActivity {
         Location mockLocationLondon = locationManager.createLocation(locationLondon);
         Location mockLocationMannheim = locationManager.createLocation(locationMannheim);
         Location mockLocationParis = locationManager.createLocation(locationParis);
+
+        ArrayList<Location> testAllLocation = locationManager.getAllLocations();
+        Log.i("$$", testAllLocation.toString());
+        Location testLocation = locationManager.getLocationById(1);
+        Log.i("§§§§§§§§§§", testLocation.toString());
+
         locationManager.close();
 
         Task taskHoliday = new Task(0, "Holiday", "Holidayyyyy", 5000);
         taskHoliday.addLocationToTask(mockLocationLondon);
         taskHoliday.addLocationToTask(mockLocationParis);
+        Log.i("§§§§§§§§§§", taskHoliday.toString());
         Task taskStudy = new Task(0, "Study", "This is to study", 1000);
         taskStudy.addLocationToTask(mockLocationMannheim);
         TaskManager taskManager = new TaskManager(this);
         taskManager.open();
         taskManager.createTask(taskHoliday);
+
         Log.i("taskHoliday", taskHoliday.toString());
         taskManager.createTask(taskStudy);
         Log.i("taskStudy", taskStudy.toString());
         taskManager.close();
+
+
+
 
         //todo: endtodo
     }

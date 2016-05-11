@@ -63,7 +63,7 @@ public class Location implements Serializable {
     @Override
     public String toString()
     {
-        return this.name + ", " + this.description + ", " + this.longtitude + ", " + this.latitude;
+        return this.id + ", " + this.name + ", " + this.description + ", " + this.longtitude + ", " + this.latitude;
 
     }
 
