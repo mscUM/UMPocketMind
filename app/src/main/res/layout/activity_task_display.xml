@@ -6,7 +6,8 @@ Button Show Locations on Map
 <-->
 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,37 +17,141 @@ Button Show Locations on Map
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     >
-
     <TextView
-        android:id="@+id/taskDetail_name"
+        android:id="@+id/detailsLabel"
+        android:text="Task Details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="95dp"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        android:padding="0dp"/>
+    <!--Create a table layout for showing task details-->
+    <TableLayout
+        android:id="@+id/taskTable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/detailsLabel"
+        android:orientation="vertical"
+        android:stretchColumns="1">
 
-    <TextView
-        android:id="@+id/taskDetail_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/taskDetail_name"
-        />
+        <!--The first row-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            >
 
-    <TextView
-        android:id="@+id/taskDetail_range"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/taskDetail_description"
-        />
+            <TextView
+                android:id="@+id/task_name"
+                android:layout_column="0"
+                android:text="Name"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                />
 
-    <TextView
-        android:id="@+id/taskDetail_Locations"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/taskDetail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_column="1"
+                android:textSize="20sp"
+                />
+        </TableRow>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/taskDetail_ButtonShowOnMap"
-        android:text="Show Task on Map"
-        android:layout_below="@id/taskDetail_range"
-        android:onClick="showTasksOnMap" />
-</LinearLayout>
+        <!--The second row-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            >
+            <TextView
+                android:id="@+id/task_description"
+                android:layout_column="0"
+                android:text="Description"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/taskDetail_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_column="1"
+                android:textSize="20sp"
+                />
+        </TableRow>
+
+        <!--The third row-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            >
+
+            <TextView
+                android:id="@+id/task_range"
+                android:layout_column="0"
+                android:text="Range"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/taskDetail_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_column="1"
+                android:textSize="20sp"
+                />
+        </TableRow>
+
+        <!--The forth row-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            >
+
+            <TextView
+                android:id="@+id/task_locations"
+                android:layout_column="0"
+                android:text="Location"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/taskDetail_Locations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_column="1"
+                android:textSize="20sp"
+                />
+        </TableRow>
+
+        <!--The button row-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/taskDetail_ButtonShowOnMap"
+                android:text="Show Task on Map"
+                android:layout_column="0"
+                android:onClick="showTasksOnMap"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+
+</RelativeLayout>
